@@ -29,28 +29,34 @@
             letter-spacing: 1px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(212, 175, 55, 0.4);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            text-align: center;
         }
         .btn-premium:hover {
             transform: scale(1.05) translateY(-3px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px rgba(212, 175, 55, 0.6);
+            color: #000;
         }
         .nav-glass {
-            background: rgba(11, 36, 28, 0.9);
+            background: rgba(11, 36, 28, 0.95);
             backdrop-filter: blur(12px);
         }
         .product-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         .product-card:hover {
             border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.05);
         }
         .watercolor-glow {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
             z-index: -1;
         }
     </style>
@@ -60,20 +66,21 @@
     <!-- Header -->
     <header class="fixed w-full z-50 nav-glass border-b border-white/10">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="logo.png" alt="Bengal Pride Logo" class="h-12 w-auto brightness-0 invert">
-                <span class="text-xl font-bold tracking-tighter uppercase hidden md:block">Bengal Pride</span>
+            <div class="flex items-center space-x-4">
+                <!-- Logo size increased 2x (h-24) -->
+                <img src="logo.png" alt="Bengal Pride Logo" class="h-24 w-auto brightness-0 invert object-contain">
+                <span class="text-2xl font-bold tracking-tighter uppercase hidden lg:block">Bengal Pride</span>
             </div>
             
             <div class="hidden md:flex space-x-10 font-semibold text-xs uppercase tracking-[0.2em]">
-                <a href="#home" class="hover:text-amber-400 transition">Home</a>
-                <a href="#products" class="hover:text-amber-400 transition">Products</a>
-                <a href="#story" class="hover:text-amber-400 transition">Our Story</a>
-                <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+                <a href="#home" class="hover:text-amber-500 transition">Home</a>
+                <a href="#products" class="hover:text-amber-500 transition">Products</a>
+                <a href="#story" class="hover:text-amber-500 transition">Our Story</a>
+                <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
             </div>
 
             <button class="md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
@@ -81,12 +88,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" class="relative min-h-screen flex items-center pt-32 overflow-hidden">
         <div class="watercolor-glow top-0 right-0"></div>
         <div class="watercolor-glow bottom-0 left-0"></div>
         
         <div class="container mx-auto px-6 text-center relative z-10">
-            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-xs mb-6 block opacity-80">Sustainable Living</span>
+            <!-- Increased size of Sustainable Living -->
+            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-xl md:text-2xl mb-8 block opacity-90">Sustainable Living</span>
+            
             <h1 class="text-6xl md:text-9xl font-bold mb-8 leading-tight">
                 From Nature <br><span class="italic font-normal text-amber-500 opacity-90">— To Nature</span>
             </h1>
@@ -94,7 +103,7 @@
                 Elevate your sanctuary with luxury handcrafted essentials. Rooted in Bengali heritage, woven for a greener tomorrow.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#products" class="btn-premium px-12 py-5 rounded-full text-lg">
+                <a href="#products" class="btn-premium px-12 py-5 rounded-full text-lg shadow-2xl">
                     Shop The Collection
                 </a>
                 <a href="#story" class="px-12 py-5 rounded-full border-2 border-white/20 hover:bg-white/10 transition text-lg font-semibold">
@@ -105,7 +114,7 @@
     </section>
 
     <!-- Featured Products -->
-    <section id="products" class="py-32 bg-black/20">
+    <section id="products" class="py-32 bg-black/10">
         <div class="container mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="text-5xl font-bold mb-4">Artisanal Treasures</h2>
@@ -114,54 +123,51 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- Product 1 -->
-                <div class="product-card group rounded-3xl p-6">
+                <div class="product-card group rounded-3xl p-8">
                     <div class="overflow-hidden rounded-2xl mb-8 aspect-square relative">
                         <img src="tray.jpg" alt="Cane Round Jalebi Tray" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                        <div class="absolute top-4 left-4 bg-amber-500 text-emerald-950 px-3 py-1 rounded-full text-xs font-bold">TOP RATED</div>
+                        <div class="absolute top-4 left-4 bg-amber-500 text-emerald-950 px-3 py-1 rounded-full text-xs font-bold">BEST SELLER</div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Cane Round Jalebi Tray</h3>
-                    <p class="text-stone-400 mb-6 text-sm">A beautiful blend of cane and traditional Shitol Paty weaving.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-amber-500">৳ 599</span>
-                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </button>
+                    <p class="text-stone-400 mb-6 text-sm flex-grow">A beautiful blend of cane and traditional Shitol Paty weaving. Perfect for serving or home decor.</p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-3xl font-bold text-amber-500">৳ 599</span>
+                        </div>
+                        <a href="https://wa.me/8801305552647" target="_blank" class="btn-premium w-full py-4 rounded-xl">Shop Now</a>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
-                <div class="product-card group rounded-3xl p-6">
+                <div class="product-card group rounded-3xl p-8">
                     <div class="overflow-hidden rounded-2xl mb-8 aspect-square">
                         <img src="tissue.jpg" alt="Woven Tissue Holder" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Woven Tissue Holder</h3>
-                    <p class="text-stone-400 mb-6 text-sm">Eco-friendly water hyacinth holder for a sophisticated table.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-amber-500">৳ 399</span>
-                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </button>
+                    <p class="text-stone-400 mb-6 text-sm flex-grow">Eco-friendly water hyacinth holder designed for a sophisticated and natural table setting.</p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-3xl font-bold text-amber-500">৳ 399</span>
+                        </div>
+                        <a href="https://wa.me/8801305552647" target="_blank" class="btn-premium w-full py-4 rounded-xl">Shop Now</a>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="product-card group rounded-3xl p-6">
+                <div class="product-card group rounded-3xl p-8">
                     <div class="overflow-hidden rounded-2xl mb-8 aspect-square">
                         <img src="stand.jpg" alt="Double Layer Stand" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Double Layer Stand</h3>
-                    <p class="text-stone-400 mb-6 text-sm">Two tiers of hand-woven organizers for a tidy, elegant home.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-amber-500">৳ 599</span>
-                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </button>
+                    <p class="text-stone-400 mb-6 text-sm flex-grow">Maximize your space with elegance. Two tiers of hand-woven organizers for a tidy, premium home.</p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-3xl font-bold text-amber-500">৳ 599</span>
+                        </div>
+                        <a href="https://wa.me/8801305552647" target="_blank" class="btn-premium w-full py-4 rounded-xl">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -169,7 +175,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="story" class="py-32 relative overflow-hidden">
+    <section id="story" class="py-32 relative overflow-hidden bg-black/5">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 items-center gap-16">
                 <div class="relative">
@@ -209,10 +215,10 @@
                 <div>
                     <h4 class="font-bold uppercase tracking-widest text-xs mb-8 text-amber-500">Get in Touch</h4>
                     <p class="text-stone-400 mb-2">WhatsApp: 01305-552647</p>
-                    <p class="text-stone-400 mb-6">hello@bengalpride.global</p>
+                    <p class="text-stone-400 mb-6 font-bold">hello@bengalpride.global</p>
                     <div class="flex space-x-6">
-                        <a href="#" class="text-white hover:text-amber-500 transition text-2xl">FB</a>
-                        <a href="#" class="text-white hover:text-amber-500 transition text-2xl">IG</a>
+                        <a href="https://facebook.com/bengalpride" class="text-white hover:text-amber-500 transition text-xl font-bold">FACEBOOK</a>
+                        <a href="https://instagram.com/bengalpride.global" class="text-white hover:text-amber-500 transition text-xl font-bold">INSTAGRAM</a>
                     </div>
                 </div>
             </div>
