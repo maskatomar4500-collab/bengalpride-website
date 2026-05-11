@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengal Pride | From Nature - To Nature</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-green: #0B241C;
+            --accent-gold: #D4AF37;
+            --soft-white: #F8F9F8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--forest-green);
+            color: var(--soft-white);
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Eye-catchy button style */
+        .btn-premium {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #0B241C;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-premium:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px rgba(212, 175, 55, 0.6);
+        }
+        .nav-glass {
+            background: rgba(11, 36, 28, 0.9);
+            backdrop-filter: blur(12px);
+        }
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: var(--accent-gold);
+        }
+        .watercolor-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 nav-glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="Bengal Pride Logo" class="h-12 w-auto brightness-0 invert">
+                <span class="text-xl font-bold tracking-tighter uppercase hidden md:block">Bengal Pride</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-10 font-semibold text-xs uppercase tracking-[0.2em]">
+                <a href="#home" class="hover:text-amber-400 transition">Home</a>
+                <a href="#products" class="hover:text-amber-400 transition">Products</a>
+                <a href="#story" class="hover:text-amber-400 transition">Our Story</a>
+                <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+            </div>
+
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="watercolor-glow top-0 right-0"></div>
+        <div class="watercolor-glow bottom-0 left-0"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-xs mb-6 block opacity-80">Sustainable Living</span>
+            <h1 class="text-6xl md:text-9xl font-bold mb-8 leading-tight">
+                From Nature <br><span class="italic font-normal text-amber-500 opacity-90">— To Nature</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-stone-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                Elevate your sanctuary with luxury handcrafted essentials. Rooted in Bengali heritage, woven for a greener tomorrow.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#products" class="btn-premium px-12 py-5 rounded-full text-lg">
+                    Shop The Collection
+                </a>
+                <a href="#story" class="px-12 py-5 rounded-full border-2 border-white/20 hover:bg-white/10 transition text-lg font-semibold">
+                    Our Heritage
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-32 bg-black/20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-4">Artisanal Treasures</h2>
+                <div class="h-1 w-24 bg-amber-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Product 1 -->
+                <div class="product-card group rounded-3xl p-6">
+                    <div class="overflow-hidden rounded-2xl mb-8 aspect-square relative">
+                        <img src="tray.jpg" alt="Cane Round Jalebi Tray" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 left-4 bg-amber-500 text-emerald-950 px-3 py-1 rounded-full text-xs font-bold">TOP RATED</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Cane Round Jalebi Tray</h3>
+                    <p class="text-stone-400 mb-6 text-sm">A beautiful blend of cane and traditional Shitol Paty weaving.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-amber-500">৳ 599</span>
+                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group rounded-3xl p-6">
+                    <div class="overflow-hidden rounded-2xl mb-8 aspect-square">
+                        <img src="tissue.jpg" alt="Woven Tissue Holder" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Woven Tissue Holder</h3>
+                    <p class="text-stone-400 mb-6 text-sm">Eco-friendly water hyacinth holder for a sophisticated table.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-amber-500">৳ 399</span>
+                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group rounded-3xl p-6">
+                    <div class="overflow-hidden rounded-2xl mb-8 aspect-square">
+                        <img src="stand.jpg" alt="Double Layer Stand" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Double Layer Stand</h3>
+                    <p class="text-stone-400 mb-6 text-sm">Two tiers of hand-woven organizers for a tidy, elegant home.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-amber-500">৳ 599</span>
+                        <button class="bg-white text-emerald-950 p-3 rounded-full hover:bg-amber-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="story" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 items-center gap-16">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-full h-full border-2 border-amber-500/30 rounded-2xl"></div>
+                    <img src="https://images.unsplash.com/photo-1544965850-6f8a66788f9b?auto=format&fit=crop&q=80&w=800" alt="Artisan at work" class="rounded-2xl relative z-10 shadow-2xl grayscale hover:grayscale-0 transition duration-1000">
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold mb-8">The Heritage of Craft</h2>
+                    <p class="text-stone-300 text-lg leading-relaxed mb-6">
+                        Every piece at Bengal Pride is a labor of love. We work with rural artisans to bring you products that are not just beautiful, but soulful. By choosing us, you are supporting ancient weaving traditions and a zero-waste lifestyle.
+                    </p>
+                    <p class="text-stone-300 text-lg leading-relaxed mb-10">
+                        Our materials are sourced directly from the earth—water hyacinth, jute, and bamboo—ensuring that our products leave no footprint, only memories.
+                    </p>
+                    <a href="#contact" class="btn-premium px-10 py-4 rounded-full inline-block">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-black/40 border-t border-white/10 py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
+                <div>
+                    <h3 class="text-3xl font-serif italic mb-6">Bengal Pride</h3>
+                    <p class="text-stone-400">Preserving heritage, protecting the future. From Nature — To Nature.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs mb-8 text-amber-500">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-amber-500">Shop All</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Sustainability Report</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Artisan Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs mb-8 text-amber-500">Get in Touch</h4>
+                    <p class="text-stone-400 mb-2">WhatsApp: 01305-552647</p>
+                    <p class="text-stone-400 mb-6">hello@bengalpride.global</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-amber-500 transition text-2xl">FB</a>
+                        <a href="#" class="text-white hover:text-amber-500 transition text-2xl">IG</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-10 border-t border-white/5 text-xs text-stone-500 tracking-widest">
+                &copy; 2024 BENGAL PRIDE GLOBAL. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
