@@ -22,7 +22,6 @@
         .nav-glass { background: rgba(11, 36, 28, 0.98); }
         .checkout-modal { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); display: none; overflow-y: auto; }
         
-        /* Navigation White Box Styling */
         .nav-box {
             background-color: white;
             padding: 14px 45px;
@@ -38,7 +37,7 @@
 </head>
 <body class="antialiased">
 
-    <!-- Order & Description Modal (Hidden by Default) -->
+    <!-- Checkout & Spec Modal -->
     <div id="modalOverlay" style="display: none;" class="fixed inset-0 z-[100] checkout-modal flex items-start justify-center p-4 py-12">
         <div class="bg-stone-100 text-stone-900 w-full max-w-2xl rounded-3xl shadow-2xl relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-400 hover:text-stone-900">&times;</button>
@@ -60,7 +59,7 @@
                 <h3 class="text-xl font-bold mb-6 text-emerald-900 uppercase tracking-wide">Delivery Information</h3>
                 <div class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="custName" placeholder="Your Full Name" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+                        <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
                         <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
                     </div>
                     <textarea id="custAddr" placeholder="Full Delivery Address" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white h-24"></textarea>
@@ -70,43 +69,32 @@
                     </select>
                 </div>
                 <div class="mt-10 p-6 bg-emerald-900 text-white rounded-2xl flex justify-between items-center">
-                    <span class="text-lg font-medium opacity-80 uppercase tracking-widest">Grand Total:</span>
+                    <span class="text-lg font-medium opacity-80 tracking-widest">GRAND TOTAL:</span>
                     <span id="totalDisplay" class="text-3xl font-bold">৳ 0</span>
                 </div>
-                <button onclick="placeOrder()" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl shadow-xl">Confirm & Generate Invoice</button>
+                <button onclick="placeOrder()" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl">Confirm Order</button>
             </div>
-            <div id="invoiceContent" class="hidden p-12">
-                <div class="text-center mb-10 border-b border-dashed border-stone-300 pb-8">
-                    <h1 class="text-3xl font-bold text-emerald-900 tracking-tighter">BENGAL PRIDE</h1>
-                    <p class="text-xs uppercase tracking-[0.3em] text-stone-500 mt-2">Sustainable Living Essentials</p>
+            <div id="invoiceContent" class="hidden p-12 text-center">
+                <h1 class="text-3xl font-bold text-emerald-900">INVOICE GENERATED</h1>
+                <div id="invoiceDetails" class="my-8 text-left space-y-2 font-medium border-t border-b py-6">
+                    <p>Order ID: <span id="invID"></span></p>
+                    <p>Customer: <span id="invName"></span></p>
+                    <p>Product: <span id="invProduct"></span></p>
+                    <p>Total: <span id="invTotal"></span></p>
                 </div>
-                <div class="space-y-4 text-sm font-medium">
-                    <div class="flex justify-between"><span>ORDER ID:</span> <span id="invID" class="font-bold"></span></div>
-                    <div class="flex justify-between"><span>CUSTOMER:</span> <span id="invName"></span></div>
-                    <div class="flex justify-between"><span>PHONE:</span> <span id="invPhone"></span></div>
-                    <div class="flex justify-between text-right"><span>ADDRESS:</span> <span id="invAddr" class="max-w-[200px]"></span></div>
-                    <hr class="border-stone-200">
-                    <div class="flex justify-between py-2 text-emerald-800"><span>ITEM:</span> <span id="invProduct"></span></div>
-                    <div class="flex justify-between py-2"><span>DELIVERY FEE:</span> <span id="invDeliv"></span></div>
-                    <div class="flex justify-between py-4 font-bold text-2xl border-t border-stone-800 mt-2"><span>TOTAL:</span> <span id="invTotal"></span></div>
-                </div>
-                <button onclick="window.print()" class="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest">Print / Save Invoice</button>
-                <button onclick="closeModal()" class="w-full text-stone-400 text-xs uppercase font-bold tracking-widest">Back to Home</button>
+                <button onclick="window.print()" class="bg-emerald-900 text-white w-full py-4 rounded-xl">Save / Print Invoice</button>
+                <button onclick="closeModal()" class="mt-4 text-stone-400 text-sm underline">Close</button>
             </div>
         </div>
     </div>
 
-    <!-- Header Section (Now scrolls with the page) -->
-    <header class="w-full z-10 nav-glass border-b border-white/10">
+    <!-- Scrolling Branding Header -->
+    <header class="w-full nav-glass border-b border-white/10">
         <div class="container mx-auto px-6 py-12 flex flex-col items-center">
-            
-            <!-- Branding Row: Icon and Text side-by-side -->
             <div class="flex flex-row items-center justify-center space-x-12 mb-4">
                 <img src="logo.png" alt="Bengal Pride" class="h-40 md:h-52 w-auto brightness-0 invert object-contain">
                 <span class="text-7xl md:text-[110px] font-bold tracking-tighter uppercase leading-none">BENGAL PRIDE</span>
             </div>
-            
-            <!-- White Navigation Rectangle -->
             <div class="nav-box flex items-center justify-center space-x-10 md:space-x-14 font-bold text-lg md:text-xl uppercase tracking-[0.15em] whitespace-nowrap">
                 <a href="#home" class="text-emerald-950 hover:text-amber-600 transition">Home</a>
                 <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Products</a>
@@ -118,42 +106,56 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-[70vh] flex flex-col items-center justify-center py-20 text-center">
-        <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
-            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
-            <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
-                <span>From Nature</span>
-                <span class="italic font-normal text-amber-500 opacity-90 mt-4">To Nature</span>
-            </h1>
-        </div>
+        <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
+        <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
+            <span>From Nature</span>
+            <span class="italic font-normal text-amber-500 opacity-90 mt-4">To Nature</span>
+        </h1>
     </section>
 
     <!-- Product Grid -->
     <section id="products" class="py-32">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
-                <!-- Product 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
+                <!-- 1. Jalebi Tray Design A -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="tray.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Cane Round Jalebi Tray</h3>
+                    <h3 class="text-2xl font-bold mb-2">Cane Round Jalebi Tray (A)</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Cane Round Jalebi Tray', 599, '12.5 inch', '12.5 inch', '2 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
+                    <button onclick="openCheckout('Cane Round Jalebi Tray (A)', 599, '12.5 inch', '12.5 inch', '2 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
-                <!-- Product 2 -->
+                <!-- 2. Tissue Holder -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="tissue.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Woven Tissue Holder</h3>
+                    <h3 class="text-2xl font-bold mb-2">Woven Tissue Holder</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 399</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Woven Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
+                    <button onclick="openCheckout('Woven Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
-                <!-- Product 3 -->
+                <!-- 3. Double Stand -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="stand.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Double Layer Stand</h3>
+                    <h3 class="text-2xl font-bold mb-2">Double Layer Stand</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Double Layer Stand', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
+                    <button onclick="openCheckout('Double Layer Stand', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
+                </div>
+                <!-- 4. Jalebi Tray Design B (New) -->
+                <div class="pinterest-card bg-white/5 p-8 group">
+                    <img src="tray2.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
+                    <h3 class="text-2xl font-bold mb-2">Cane Round Jalebi Tray (B)</h3>
+                    <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
+                    <div class="flex-grow"></div>
+                    <button onclick="openCheckout('Cane Round Jalebi Tray (B)', 599, '12.5 inch', '12.5 inch', '2 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
+                </div>
+                <!-- 5. Shitol Paty Tray (New) -->
+                <div class="pinterest-card bg-white/5 p-8 group">
+                    <img src="shitol_paty.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
+                    <h3 class="text-2xl font-bold mb-2">Cane Tray with Shitol Paty</h3>
+                    <p class="text-xl text-amber-500 font-bold mb-6">৳ 699</p>
+                    <div class="flex-grow"></div>
+                    <button onclick="openCheckout('Cane Tray with Shitol Paty', 699, '3 inch', '10 inch', '10 inch', 'Cane & Shitol Paty')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
             </div>
         </div>
@@ -218,9 +220,7 @@
             document.getElementById('invID').innerText = orderId;
             document.getElementById('invName').innerText = name;
             document.getElementById('invPhone').innerText = phone;
-            document.getElementById('invAddr').innerText = addr;
             document.getElementById('invProduct').innerText = currentItem + " (৳" + currentPrice + ")";
-            document.getElementById('invDeliv').innerText = "৳" + deliv;
             document.getElementById('invTotal').innerText = "৳" + total;
             document.getElementById('checkoutForm').style.display = 'none';
             document.getElementById('invoiceContent').classList.remove('hidden');
