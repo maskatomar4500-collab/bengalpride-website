@@ -19,7 +19,7 @@
         }
         .btn-premium:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
         
-        .nav-glass { background: rgba(11, 36, 28, 0.98); backdrop-filter: blur(15px); }
+        .nav-glass { background: rgba(11, 36, 28, 0.98); }
         .checkout-modal { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); display: none; overflow-y: auto; }
         
         /* Navigation White Box Styling */
@@ -28,7 +28,7 @@
             padding: 14px 45px;
             border-radius: 14px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            margin-top: 20px; /* Moves buttons lower */
+            margin-top: 20px;
         }
 
         .pinterest-card { border-radius: 24px; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
@@ -96,18 +96,18 @@
         </div>
     </div>
 
-    <!-- Header Section -->
-    <header class="fixed w-full z-50 nav-glass border-b border-white/10">
+    <!-- Header Section (Now scrolls with the page) -->
+    <header class="w-full z-10 nav-glass border-b border-white/10">
         <div class="container mx-auto px-6 py-12 flex flex-col items-center">
             
-            <!-- Branding Row: Icon and Text at massive, equal size -->
+            <!-- Branding Row: Icon and Text side-by-side -->
             <div class="flex flex-row items-center justify-center space-x-12 mb-4">
                 <img src="logo.png" alt="Bengal Pride" class="h-40 md:h-52 w-auto brightness-0 invert object-contain">
                 <span class="text-7xl md:text-[110px] font-bold tracking-tighter uppercase leading-none">BENGAL PRIDE</span>
             </div>
             
-            <!-- White Navigation Rectangle: Moved lower -->
-            <div class="nav-box flex items-center space-x-10 md:space-x-14 font-bold text-lg md:text-xl uppercase tracking-[0.15em] whitespace-nowrap">
+            <!-- White Navigation Rectangle -->
+            <div class="nav-box flex items-center justify-center space-x-10 md:space-x-14 font-bold text-lg md:text-xl uppercase tracking-[0.15em] whitespace-nowrap">
                 <a href="#home" class="text-emerald-950 hover:text-amber-600 transition">Home</a>
                 <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Products</a>
                 <a href="#story" class="text-emerald-950 hover:text-amber-600 transition">Our Story</a>
@@ -116,8 +116,8 @@
         </div>
     </header>
 
-    <!-- Hero Section: Adjusted padding to account for the larger header -->
-    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-[550px] md:pt-[450px] text-center">
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[70vh] flex flex-col items-center justify-center py-20 text-center">
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
             <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
             <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
@@ -145,7 +145,7 @@
                     <h3 class="text-3xl font-bold mb-2">Woven Tissue Holder</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 399</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Woven Tissue Holder', 399, '5 inch', '5 inch', '3 inch', 'Water Hyacinth')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
+                    <button onclick="openCheckout('Woven Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
                 </div>
                 <!-- Product 3 -->
                 <div class="pinterest-card bg-white/5 p-8 group">
@@ -153,7 +153,7 @@
                     <h3 class="text-3xl font-bold mb-2">Double Layer Stand</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Double Layer Stand', 599, '14 inch', '10 inch', '8 inch', 'Cane & Bamboo')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
+                    <button onclick="openCheckout('Double Layer Stand', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full mt-auto">Shop Now</button>
                 </div>
             </div>
         </div>
