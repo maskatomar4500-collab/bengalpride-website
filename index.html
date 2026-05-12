@@ -57,7 +57,7 @@
                     <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product Name</h2>
                     <p id="selectedItemPrice" class="text-2xl text-amber-700 font-bold mb-8">৳ 0</p>
                     <div class="bg-white p-6 rounded-2xl border border-stone-200">
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-emerald-800 mb-4 border-b pb-2">Product Details</h4>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-emerald-800 mb-4 border-b pb-2 text-center">Product Specifications</h4>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div><p class="spec-label">Height</p><p id="specHeight" class="spec-value">-</p></div>
                             <div><p class="spec-label">Width</p><p id="specWidth" class="spec-value">-</p></div>
@@ -83,32 +83,25 @@
                     <span class="text-lg font-medium opacity-80 uppercase tracking-widest">Grand Total:</span>
                     <span id="totalDisplay" class="text-3xl font-bold">৳ 0</span>
                 </div>
-                <button onclick="placeOrder()" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl shadow-xl">Confirm & Generate Invoice</button>
+                <button onclick="placeOrder()" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl shadow-xl">Confirm Order</button>
             </div>
-            <div id="invoiceContent" class="hidden p-12">
-                <div class="text-center mb-10 border-b border-dashed border-stone-300 pb-8">
-                    <h1 class="text-3xl font-bold text-emerald-900 tracking-tighter">BENGAL PRIDE</h1>
-                    <p class="text-xs uppercase tracking-[0.3em] text-stone-500 mt-2">Sustainable Living Essentials</p>
+            <div id="invoiceContent" class="hidden p-12 text-center">
+                <h1 class="text-3xl font-bold text-emerald-900 mb-4">INVOICE GENERATED</h1>
+                <div id="invoiceDetails" class="my-8 text-left space-y-2 border-t border-b py-6 text-stone-700">
+                    <p>Order ID: <span id="invID" class="font-bold"></span></p>
+                    <p>Customer: <span id="invName"></span></p>
+                    <p>Product: <span id="invProduct"></span></p>
+                    <p>Total: <span id="invTotal" class="font-bold text-emerald-800"></span></p>
                 </div>
-                <div class="space-y-4 text-sm font-medium">
-                    <div class="flex justify-between"><span>ORDER ID:</span> <span id="invID" class="font-bold"></span></div>
-                    <div class="flex justify-between"><span>CUSTOMER:</span> <span id="invName"></span></div>
-                    <div class="flex justify-between"><span>PHONE:</span> <span id="invPhone"></span></div>
-                    <div class="flex justify-between text-right"><span>ADDRESS:</span> <span id="invAddr" class="max-w-[200px]"></span></div>
-                    <hr class="border-stone-200">
-                    <div class="flex justify-between py-2 text-emerald-800"><span>ITEM:</span> <span id="invProduct"></span></div>
-                    <div class="flex justify-between py-2"><span>DELIVERY FEE:</span> <span id="invDeliv"></span></div>
-                    <div class="flex justify-between py-4 font-bold text-2xl border-t border-stone-800 mt-2"><span>TOTAL:</span> <span id="invTotal"></span></div>
-                </div>
-                <button onclick="window.print()" class="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest mt-8">Print / Save Invoice</button>
-                <button onclick="closeModal()" class="w-full text-stone-400 text-xs uppercase font-bold tracking-widest mt-4">Back to Home</button>
+                <button onclick="window.print()" class="bg-emerald-900 text-white w-full py-4 rounded-xl font-bold">Print Invoice</button>
+                <button onclick="closeModal()" class="mt-4 text-stone-400 text-sm underline">Close</button>
             </div>
         </div>
     </div>
 
     <!-- Scrolling Branding Header -->
     <header class="w-full nav-glass border-b border-white/10">
-        <div class="container mx-auto px-6 py-12 flex flex-col items-center">
+        <div class="container mx-auto px-6 py-12 flex flex-col items-center text-center">
             <div class="flex flex-row items-center justify-center space-x-12 mb-4">
                 <img src="logo.png" alt="Bengal Pride" class="h-40 md:h-52 w-auto brightness-0 invert object-contain">
                 <span class="text-7xl md:text-[110px] font-bold tracking-tighter uppercase leading-none">BENGAL PRIDE</span>
@@ -137,34 +130,34 @@
     <section id="products" class="py-32">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
-                <!-- 1. Tray A -->
+                <!-- 1. Serving Tray (Renamed) -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="tray.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Cane Round Jalebi Tray (A)</h3>
+                    <h3 class="text-2xl font-bold mb-2">Serving Tray</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Cane Round Jalebi Tray (A)', 599, '12.5 inch', '12.5 inch', '2 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
+                    <button onclick="openCheckout('Serving Tray', 599, '12.5 inch', '12.5 inch', '2 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
-                <!-- 2. Tissue Holder -->
+                <!-- 2. Tissue Holder (Renamed) -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="tissue.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Woven Tissue Holder</h3>
+                    <h3 class="text-2xl font-bold mb-2">Tissue Holder</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 399</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Woven Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
+                    <button onclick="openCheckout('Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
-                <!-- 3. Double Stand -->
+                <!-- 3. Table Organizer (Renamed) -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="stand.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Double Layer Stand</h3>
+                    <h3 class="text-2xl font-bold mb-2">Table Organizer</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
-                    <button onclick="openCheckout('Double Layer Stand', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
+                    <button onclick="openCheckout('Table Organizer', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
                 </div>
                 <!-- 4. Spoon Organizer -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="tray2.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Spoon Organizer</h3>
+                    <h3 class="text-2xl font-bold mb-2">Spoon Organizer</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
                     <div class="flex-grow"></div>
                     <button onclick="openCheckout('Spoon Organizer', 599, '11 inch', '14 inch', '4 inch', 'Cane')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
@@ -172,7 +165,7 @@
                 <!-- 5. Shitol Paty Tray -->
                 <div class="pinterest-card bg-white/5 p-8 group">
                     <img src="shitol_paty.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-700">
-                    <h3 class="text-3xl font-bold mb-2">Cane Tray with Shitol Paty</h3>
+                    <h3 class="text-2xl font-bold mb-2">Cane Tray with Shitol Paty</h3>
                     <p class="text-xl text-amber-500 font-bold mb-6">৳ 499</p>
                     <div class="flex-grow"></div>
                     <button onclick="openCheckout('Cane Tray with Shitol Paty', 499, '9 inch', '11 inch', '3 inch', 'Cane & Shitol Paty')" class="btn-premium py-5 rounded-2xl text-xl w-full">Shop Now</button>
@@ -184,14 +177,23 @@
     <!-- Footer -->
     <footer id="contact" class="bg-black/40 py-24 border-t border-white/5 text-center">
         <h3 class="text-5xl font-serif italic mb-16">Bengal Pride</h3>
-        <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-16 text-lg font-bold text-amber-500 tracking-widest">
+        <div class="flex flex-col md:flex-row justify-center items-center space-y-10 md:space-y-0 md:space-x-16 text-lg font-bold text-amber-500 tracking-widest">
+            
+            <!-- Facebook Icon and Handle -->
             <a href="https://facebook.com/bengalpride" class="flex items-center space-x-3 hover:text-white transition">
-                <span class="normal-case font-bold">Bengal Pride</span>
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+                <span class="normal-case">Bengal Pride</span>
             </a>
+            
+            <!-- Instagram Icon and Handle -->
             <a href="https://instagram.com/bengalpride.global" class="flex items-center space-x-3 hover:text-white transition">
-                <span class="lowercase font-bold">bengalpride.global</span>
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                <span class="lowercase">bengalpride.global</span>
             </a>
-            <div class="flex items-center space-x-3 font-bold">
+            
+            <!-- Whatsapp Icon and Number -->
+            <div class="flex items-center space-x-3">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.98L4.69 19.8L5.52 16.7L5.34 16.43C4.61 15.26 4.22 13.92 4.22 11.91C4.22 7.37 7.91 3.67 12.05 3.67M9.75 7.05C9.56 7.05 9.25 7.12 8.99 7.4C8.73 7.68 8 8.37 8 9.76C8 11.15 9 12.49 9.15 12.69C9.3 12.89 11.1 15.69 13.86 16.88C14.52 17.17 15.02 17.33 15.42 17.46C16.08 17.67 16.68 17.64 17.17 17.57C17.71 17.49 18.84 16.88 19.07 16.24C19.3 15.6 19.3 15.05 19.23 14.94C19.16 14.83 18.97 14.77 18.69 14.63C18.41 14.49 17.03 13.81 16.77 13.72C16.52 13.63 16.33 13.58 16.15 13.86C15.96 14.14 15.45 14.77 15.3 14.94C15.15 15.11 15 15.13 14.71 15C14.44 14.85 13.56 14.56 12.51 13.63C11.69 12.9 11.14 12 10.98 11.72C10.82 11.44 10.96 11.29 11.1 11.15C11.23 11.01 11.39 10.82 11.53 10.66C11.67 10.5 11.71 10.38 11.81 10.18C11.9 9.97 11.86 9.8 11.79 9.66C11.72 9.5 11.21 8.24 11 7.73C10.79 7.23 10.58 7.3 10.42 7.29C10.28 7.29 10.12 7.28 9.96 7.28C9.8 7.28 9.75 7.05 9.75 7.05Z"/></svg>
                 <span>01305-552647</span>
             </div>
         </div>
@@ -237,8 +239,7 @@
             document.getElementById('invName').innerText = name;
             document.getElementById('invPhone').innerText = phone;
             document.getElementById('invProduct').innerText = currentItem + " (৳" + currentPrice + ")";
-            document.getElementById('invDeliv').innerText = "৳" + deliv;
-            document.getElementById('invTotal').innerText = "৳" + total;
+            document.getElementById('invTotal').innerText = "৳ " + total;
             document.getElementById('checkoutForm').style.display = 'none';
             document.getElementById('invoiceContent').classList.remove('hidden');
         }
