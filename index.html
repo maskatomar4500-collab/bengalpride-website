@@ -22,6 +22,14 @@
         .nav-glass { background: rgba(11, 36, 28, 0.98); backdrop-filter: blur(12px); }
         .checkout-modal { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); display: none; overflow-y: auto; }
         
+        /* Navigation Box Styling */
+        .nav-box {
+            background-color: white;
+            padding: 12px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
         .pinterest-card { border-radius: 24px; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
         .spec-label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
         .spec-value { font-size: 1rem; font-weight: 600; color: #064e3b; }
@@ -35,11 +43,9 @@
             <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-400 hover:text-stone-900">&times;</button>
             
             <div id="checkoutForm" class="p-8 md:p-12">
-                <!-- PRODUCT DESCRIPTION (UPPER SIDE) -->
                 <div class="mb-10">
                     <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product Name</h2>
                     <p id="selectedItemPrice" class="text-2xl text-amber-700 font-bold mb-8">৳ 0</p>
-                    
                     <div class="bg-white p-6 rounded-2xl border border-stone-200">
                         <h4 class="text-sm font-bold uppercase tracking-widest text-emerald-800 mb-4 border-b pb-2">Product Details</h4>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -50,10 +56,7 @@
                         </div>
                     </div>
                 </div>
-
                 <hr class="border-stone-300 mb-10">
-
-                <!-- CUSTOMER INFO (LOWER SIDE) -->
                 <h3 class="text-xl font-bold mb-6 text-emerald-900 uppercase tracking-wide">Delivery Information</h3>
                 <div class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -66,15 +69,12 @@
                         <option value="120">Outside Dhaka (Delivery: ৳120)</option>
                     </select>
                 </div>
-
                 <div class="mt-10 p-6 bg-emerald-900 text-white rounded-2xl flex justify-between items-center">
                     <span class="text-lg font-medium opacity-80 uppercase tracking-widest">Grand Total:</span>
                     <span id="totalDisplay" class="text-3xl font-bold">৳ 0</span>
                 </div>
                 <button onclick="placeOrder()" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl shadow-xl">Confirm & Generate Invoice</button>
             </div>
-
-            <!-- INVOICE PAGE -->
             <div id="invoiceContent" class="hidden p-12">
                 <div class="text-center mb-10 border-b border-dashed border-stone-300 pb-8">
                     <h1 class="text-3xl font-bold text-emerald-900 tracking-tighter">BENGAL PRIDE</h1>
@@ -90,34 +90,35 @@
                     <div class="flex justify-between py-2"><span>DELIVERY FEE:</span> <span id="invDeliv"></span></div>
                     <div class="flex justify-between py-4 font-bold text-2xl border-t border-stone-800 mt-2"><span>TOTAL:</span> <span id="invTotal"></span></div>
                 </div>
-                <div class="mt-10 space-y-3">
-                    <button onclick="window.print()" class="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest">Print / Save Invoice</button>
-                    <button onclick="closeModal()" class="w-full text-stone-400 text-xs uppercase font-bold tracking-widest">Back to Home</button>
-                </div>
+                <button onclick="window.print()" class="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest">Print / Save Invoice</button>
+                <button onclick="closeModal()" class="w-full text-stone-400 text-xs uppercase font-bold tracking-widest">Back to Home</button>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="fixed w-full z-50 nav-glass border-b border-white/10">
-        <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
-            <div class="flex items-center space-x-8">
-                <img src="logo.png" alt="Bengal Pride" class="h-32 md:h-44 w-auto brightness-0 invert object-contain">
-                <span class="text-5xl md:text-6xl font-bold tracking-tighter uppercase hidden lg:block">BENGAL PRIDE</span>
+        <nav class="container mx-auto px-6 py-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+            <!-- Main Icon and Text (Massively Increased) -->
+            <div class="flex items-center space-x-10">
+                <img src="logo.png" alt="Bengal Pride" class="h-48 md:h-64 w-auto brightness-0 invert object-contain">
+                <span class="text-6xl md:text-8xl font-bold tracking-tighter uppercase">BENGAL PRIDE</span>
             </div>
-            <div class="hidden xl:flex space-x-12 font-semibold text-2xl uppercase tracking-wider">
-                <a href="#home" class="hover:text-amber-500 transition">Home</a>
-                <a href="#products" class="hover:text-amber-500 transition">Products</a>
-                <a href="#story" class="hover:text-amber-500 transition">Our Story</a>
-                <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
+            
+            <!-- Navigation Links (Inside White Rectangle) -->
+            <div class="nav-box flex items-center space-x-10 font-bold text-lg uppercase tracking-widest whitespace-nowrap">
+                <a href="#home" class="text-emerald-950 hover:text-amber-600 transition">Home</a>
+                <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Products</a>
+                <a href="#story" class="text-emerald-950 hover:text-amber-600 transition">Our Story</a>
+                <a href="#contact" class="text-emerald-950 hover:text-amber-600 transition">Contact</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-32 text-center">
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-80 text-center">
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
-            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-8 block">Sustainable Living</span>
+            <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
             <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
                 <span>From Nature</span>
                 <span class="italic font-normal text-amber-500 opacity-90">To Nature</span>
@@ -125,7 +126,7 @@
         </div>
     </section>
 
-    <!-- Products -->
+    <!-- Product Grid -->
     <section id="products" class="py-32">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
@@ -187,13 +188,10 @@
             currentPrice = price;
             document.getElementById('selectedItemName').innerText = item;
             document.getElementById('selectedItemPrice').innerText = "৳ " + price;
-            
-            // Description Logic
             document.getElementById('specHeight').innerText = h;
             document.getElementById('specWidth').innerText = w;
             document.getElementById('specDepth').innerText = d;
             document.getElementById('specMaterial').innerText = m;
-
             document.getElementById('modalOverlay').style.display = 'flex';
             document.getElementById('checkoutForm').style.display = 'block';
             document.getElementById('invoiceContent').classList.add('hidden');
@@ -214,9 +212,7 @@
             const phone = document.getElementById('custPhone').value;
             const deliv = parseInt(document.getElementById('deliveryZone').value);
             const total = currentPrice + deliv;
-
             if(!name || !addr || !phone) { alert("Please fill in all details."); return; }
-
             const orderId = "BP-" + Math.floor(1000 + Math.random() * 9000);
             document.getElementById('invID').innerText = orderId;
             document.getElementById('invName').innerText = name;
@@ -225,7 +221,6 @@
             document.getElementById('invProduct').innerText = currentItem + " (৳" + currentPrice + ")";
             document.getElementById('invDeliv').innerText = "৳" + deliv;
             document.getElementById('invTotal').innerText = "৳" + total;
-
             document.getElementById('checkoutForm').style.display = 'none';
             document.getElementById('invoiceContent').classList.remove('hidden');
         }
