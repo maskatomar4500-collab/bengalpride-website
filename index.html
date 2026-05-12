@@ -19,15 +19,16 @@
         }
         .btn-premium:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
         
-        .nav-glass { background: rgba(11, 36, 28, 0.98); backdrop-filter: blur(12px); }
+        .nav-glass { background: rgba(11, 36, 28, 0.98); backdrop-filter: blur(15px); }
         .checkout-modal { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); display: none; overflow-y: auto; }
         
-        /* Navigation Box Styling */
+        /* Navigation White Box Styling */
         .nav-box {
             background-color: white;
-            padding: 12px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 14px 45px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            margin-top: 20px; /* Moves buttons lower */
         }
 
         .pinterest-card { border-radius: 24px; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
@@ -37,11 +38,10 @@
 </head>
 <body class="antialiased">
 
-    <!-- Order & Description Modal -->
+    <!-- Order & Description Modal (Hidden by Default) -->
     <div id="modalOverlay" style="display: none;" class="fixed inset-0 z-[100] checkout-modal flex items-start justify-center p-4 py-12">
         <div class="bg-stone-100 text-stone-900 w-full max-w-2xl rounded-3xl shadow-2xl relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-400 hover:text-stone-900">&times;</button>
-            
             <div id="checkoutForm" class="p-8 md:p-12">
                 <div class="mb-10">
                     <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product Name</h2>
@@ -98,30 +98,31 @@
 
     <!-- Header Section -->
     <header class="fixed w-full z-50 nav-glass border-b border-white/10">
-        <nav class="container mx-auto px-6 py-10 flex flex-col lg:flex-row justify-between items-center gap-8">
-            <!-- Main Icon and Text (Massively Increased) -->
-            <div class="flex items-center space-x-10">
-                <img src="logo.png" alt="Bengal Pride" class="h-48 md:h-64 w-auto brightness-0 invert object-contain">
-                <span class="text-6xl md:text-8xl font-bold tracking-tighter uppercase">BENGAL PRIDE</span>
+        <div class="container mx-auto px-6 py-12 flex flex-col items-center">
+            
+            <!-- Branding Row: Icon and Text at massive, equal size -->
+            <div class="flex flex-row items-center justify-center space-x-12 mb-4">
+                <img src="logo.png" alt="Bengal Pride" class="h-40 md:h-52 w-auto brightness-0 invert object-contain">
+                <span class="text-7xl md:text-[110px] font-bold tracking-tighter uppercase leading-none">BENGAL PRIDE</span>
             </div>
             
-            <!-- Navigation Links (Inside White Rectangle) -->
-            <div class="nav-box flex items-center space-x-10 font-bold text-lg uppercase tracking-widest whitespace-nowrap">
+            <!-- White Navigation Rectangle: Moved lower -->
+            <div class="nav-box flex items-center space-x-10 md:space-x-14 font-bold text-lg md:text-xl uppercase tracking-[0.15em] whitespace-nowrap">
                 <a href="#home" class="text-emerald-950 hover:text-amber-600 transition">Home</a>
                 <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Products</a>
                 <a href="#story" class="text-emerald-950 hover:text-amber-600 transition">Our Story</a>
                 <a href="#contact" class="text-emerald-950 hover:text-amber-600 transition">Contact</a>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-80 text-center">
+    <!-- Hero Section: Adjusted padding to account for the larger header -->
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-[550px] md:pt-[450px] text-center">
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
             <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
             <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
                 <span>From Nature</span>
-                <span class="italic font-normal text-amber-500 opacity-90">To Nature</span>
+                <span class="italic font-normal text-amber-500 opacity-90 mt-4">To Nature</span>
             </h1>
         </div>
     </section>
