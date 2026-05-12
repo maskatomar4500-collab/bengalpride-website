@@ -5,184 +5,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bengal Pride | From Nature To Nature</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root { --forest-green: #0B241C; --accent-gold: #D4AF37; --soft-white: #F8F9F8; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--forest-green); color: var(--soft-white); margin: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--forest-green); color: var(--soft-white); margin: 0; overflow-x: hidden; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
         
-        .btn-premium {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            color: #0B241C; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-block; text-align: center;
-        }
-        .btn-premium:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
-        
-        .nav-glass { background: rgba(11, 36, 28, 0.98); }
-        .info-modal { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); display: none; overflow-y: auto; }
-        
-        .nav-box {
-            background-color: white; padding: 14px 45px; border-radius: 14px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4); margin-top: 20px;
+        /* Pinterest Boho Accents */
+        .watercolor-glow {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            z-index: -1; pointer-events: none;
         }
 
-        .pinterest-card { border-radius: 24px; overflow: hidden; height: 100%; display: flex; flex-direction: column; background: rgba(255,255,255,0.05); }
-        .spec-label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
-        .spec-value { font-size: 1rem; font-weight: 600; color: #064e3b; }
+        .btn-premium {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #0B241C; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-block; text-align: center;
+        }
+        .btn-premium:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); filter: brightness(1.1); }
+        
+        .nav-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 14px 45px; border-radius: 100px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            margin-top: 30px;
+        }
+
+        .info-modal { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); display: none; overflow-y: auto; }
+        
+        /* Pinterest Grid Styling */
+        .pinterest-card { 
+            border-radius: 32px; overflow: hidden; height: 100%; display: flex; flex-direction: column; 
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .pinterest-card:hover { transform: scale(1.02); background: rgba(255,255,255,0.06); border-color: var(--accent-gold); }
+        .product-img { transition: transform 0.8s ease; }
+        .pinterest-card:hover .product-img { transform: scale(1.1); }
+
+        .spec-label { font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
+        .spec-value { font-size: 0.95rem; font-weight: 500; color: #064e3b; }
+
+        .floating-price {
+            background: rgba(11, 36, 28, 0.8); backdrop-filter: blur(5px);
+            padding: 8px 18px; border-radius: 100px; border: 1px solid var(--accent-gold);
+        }
     </style>
 </head>
-<body class="antialiased text-white">
+<body class="antialiased">
+
+    <!-- DECORATIVE BACKGROUND ELEMENTS -->
+    <div class="watercolor-glow -top-20 -left-20"></div>
+    <div class="watercolor-glow top-1/2 -right-40"></div>
 
     <!-- OUR GOAL MODAL -->
     <div id="goalModal" style="display: none;" class="fixed inset-0 z-[110] info-modal flex items-center justify-center p-4">
-        <div class="bg-stone-100 text-stone-900 w-full max-w-lg rounded-3xl p-10 shadow-2xl relative text-center">
-            <button onclick="closeGoalModal()" class="absolute top-6 right-6 text-3xl font-bold text-stone-400 hover:text-stone-900">&times;</button>
-            <h2 class="text-4xl font-bold text-emerald-900 mb-6 uppercase">OUR GOAL</h2>
-            <p class="text-lg leading-relaxed text-stone-700 italic">
-                "Building a greener future begins with the choices we make today. Through nature-inspired products and conscious living, we aim to turn sustainability into a lifestyle — not just a trend. Thank you for being part of this journey toward a cleaner, safer, and more sustainable world for the generations ahead."
+        <div class="bg-[#FDFCF8] text-stone-900 w-full max-w-lg rounded-[2.5rem] p-12 shadow-2xl relative text-center border-t-8 border-emerald-900">
+            <button onclick="closeGoalModal()" class="absolute top-8 right-8 text-3xl font-light text-stone-400 hover:text-emerald-900">&times;</button>
+            <span class="text-amber-600 font-bold tracking-[0.3em] text-xs uppercase block mb-4">Our Vision</span>
+            <h2 class="text-4xl font-bold text-emerald-950 mb-8 leading-tight">A Sustainable <br>Legacy</h2>
+            <p class="text-xl leading-relaxed text-stone-600 font-light italic">
+                "Building a greener future begins with the choices we make today. Through nature-inspired products and conscious living, we aim to turn sustainability into a lifestyle — not just a trend."
             </p>
+            <p class="mt-8 text-emerald-900 font-bold tracking-widest text-xs">— BENGAL PRIDE —</p>
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
+    <!-- CHECKOUT & INVOICE MODAL -->
     <div id="modalOverlay" style="display: none;" class="fixed inset-0 z-[100] info-modal flex items-start justify-center p-4 py-12">
-        <div class="bg-stone-100 text-stone-900 w-full max-w-2xl rounded-3xl shadow-2xl relative overflow-hidden">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-400 hover:text-stone-900">&times;</button>
+        <div class="bg-[#F8F9F8] text-stone-900 w-full max-w-2xl rounded-[3rem] shadow-2xl relative overflow-hidden border border-white/20">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-3xl font-bold z-20 text-stone-300 hover:text-emerald-900">&times;</button>
             
-            <div id="checkoutForm" class="p-8 md:p-12">
-                <div class="mb-10 text-center md:text-left">
-                    <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product Name</h2>
-                    <p id="selectedItemPrice" class="text-2xl text-amber-700 font-bold mb-8">৳ 0</p>
-                    <div class="bg-white p-6 rounded-2xl border border-stone-200 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div id="checkoutForm" class="p-8 md:p-14">
+                <div class="mb-12">
+                    <h2 id="selectedItemName" class="text-5xl font-bold text-emerald-950 mb-3 tracking-tighter">Product Name</h2>
+                    <p id="selectedItemPrice" class="text-2xl text-amber-600 font-bold mb-10">৳ 0</p>
+                    <div class="bg-white p-8 rounded-3xl border border-stone-100 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-sm">
                         <div><p class="spec-label">Length</p><p id="specL" class="spec-value">-</p></div>
                         <div><p class="spec-label">Width</p><p id="specW" class="spec-value">-</p></div>
                         <div><p class="spec-label">Height</p><p id="specH" class="spec-value">-</p></div>
                         <div><p class="spec-label">Material</p><p id="specM" class="spec-value">-</p></div>
                     </div>
                 </div>
-                <h3 class="text-xl font-bold mb-6 text-emerald-900 uppercase text-center border-t pt-8">Delivery Information</h3>
-                <div class="space-y-4">
-                    <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500">
-                    <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500">
-                    <textarea id="custAddr" placeholder="Full Delivery Address" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 h-24"></textarea>
-                    <select id="deliveryZone" onchange="updateTotal()" class="w-full p-4 border rounded-xl outline-none font-bold text-center">
+                <div class="space-y-5">
+                    <input type="text" id="custName" placeholder="Customer Name" class="w-full p-5 border-none bg-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-800">
+                    <input type="tel" id="custPhone" placeholder="Contact Number" class="w-full p-5 border-none bg-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-800">
+                    <textarea id="custAddr" placeholder="Shipping Address" class="w-full p-5 border-none bg-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-800 h-28"></textarea>
+                    <select id="deliveryZone" onchange="updateTotal()" class="w-full p-5 border-none bg-stone-200 rounded-2xl outline-none font-bold text-emerald-900 cursor-pointer">
                         <option value="80">Inside Dhaka (৳80)</option>
                         <option value="120">Outside Dhaka (৳120)</option>
                     </select>
                 </div>
-                <div class="mt-8 p-6 bg-emerald-900 text-white rounded-2xl flex justify-between items-center">
-                    <span class="font-bold opacity-80 uppercase tracking-widest">Grand Total:</span>
-                    <span id="totalDisplay" class="text-3xl font-bold">৳ 0</span>
+                <div class="mt-12 p-8 bg-emerald-950 text-white rounded-[2rem] flex justify-between items-center shadow-xl">
+                    <span class="font-medium opacity-60 text-sm uppercase tracking-widest">Grand Total</span>
+                    <span id="totalDisplay" class="text-4xl font-bold">৳ 0</span>
                 </div>
-                <button onclick="placeOrder()" id="placeOrderBtn" class="btn-premium w-full py-5 mt-6 rounded-2xl text-xl">Place Order Now</button>
+                <button onclick="placeOrder()" id="placeOrderBtn" class="btn-premium w-full py-6 mt-8 rounded-3xl text-xl shadow-2xl">Confirm Order</button>
             </div>
 
-            <!-- INVOICE SECTION -->
-            <div id="invoiceContent" class="hidden p-8 md:p-12 text-center">
-                <h2 class="text-4xl font-bold text-green-600 mb-2 uppercase">Order Confirmed</h2>
-                <p class="text-stone-500 font-medium mb-8 italic">Thank you for choosing Bengal Pride</p>
-                <div class="bg-white p-8 rounded-2xl border text-left space-y-3 font-medium">
-                    <div class="flex justify-between"><span>ORDER ID:</span> <span id="invID" class="font-bold"></span></div>
-                    <div class="flex justify-between"><span>CUSTOMER:</span> <span id="invName"></span></div>
-                    <div class="flex justify-between"><span>PHONE:</span> <span id="invPhone"></span></div>
-                    <div class="flex justify-between"><span>PAYMENT:</span> <span class="text-emerald-700 font-bold">Cash on Delivery</span></div>
-                    <hr class="border-stone-100 my-4">
-                    <p class="text-lg">ITEM: <span id="invProduct" class="font-bold"></span></p>
-                    <p class="text-2xl border-t pt-4 font-bold text-emerald-900">GRAND TOTAL: <span id="invTotal"></span></p>
+            <div id="invoiceContent" class="hidden p-12 text-center">
+                <div class="mb-10">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h2 class="text-4xl font-bold text-green-600 uppercase">Order Confirmed</h2>
                 </div>
-                <button onclick="window.print()" class="bg-emerald-900 text-white w-full py-4 mt-8 rounded-xl font-bold uppercase tracking-widest">Save / Print Invoice</button>
-                <button onclick="closeModal()" class="mt-4 text-stone-400 text-sm underline">Back to Shop</button>
+                <div class="bg-white p-10 rounded-[2rem] text-left space-y-4 shadow-sm border border-stone-100">
+                    <div class="flex justify-between text-xs font-bold text-stone-400 uppercase tracking-widest"><span>Order ID</span> <span id="invID" class="text-emerald-900"></span></div>
+                    <div class="flex justify-between font-bold text-stone-700"><span>Customer</span> <span id="invName"></span></div>
+                    <div class="flex justify-between font-bold text-stone-700"><span>Phone</span> <span id="invPhone"></span></div>
+                    <div class="flex justify-between text-emerald-700 font-bold"><span>Payment</span> <span>Cash on Delivery</span></div>
+                    <hr class="border-stone-50 my-6">
+                    <p class="text-sm uppercase tracking-widest text-stone-400 mb-2">Selected Item</p>
+                    <p class="text-2xl font-bold text-emerald-950" id="invProduct"></p>
+                    <p class="text-3xl border-t border-stone-200 pt-6 font-bold text-emerald-900">Total: <span id="invTotal"></span></p>
+                </div>
+                <button onclick="window.print()" class="bg-emerald-950 text-white w-full py-5 mt-10 rounded-2xl font-bold uppercase tracking-[0.2em] hover:bg-black transition">Save Digital Invoice</button>
+                <button onclick="closeModal()" class="mt-6 text-stone-400 text-xs font-bold uppercase tracking-widest border-b border-stone-200">Back to Collection</button>
             </div>
         </div>
     </div>
 
-    <!-- Scrolling Massive Header -->
-    <header class="w-full py-12 flex flex-col items-center">
-        <div class="flex flex-row items-center justify-center space-x-12 mb-4">
-            <img src="logo.png" alt="Bengal Pride" class="h-40 md:h-52 w-auto brightness-0 invert object-contain">
-            <span class="text-7xl md:text-[110px] font-bold tracking-tighter uppercase leading-none">BENGAL PRIDE</span>
+    <!-- MAIN BRANDING HEADER -->
+    <header class="w-full py-16 flex flex-col items-center">
+        <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-14 mb-10 group">
+            <img src="logo.png" alt="Bengal Pride" class="h-44 md:h-60 w-auto brightness-0 invert object-contain transition-transform duration-1000 group-hover:rotate-12">
+            <span class="text-7xl md:text-[130px] font-bold tracking-tighter uppercase leading-none text-center">BENGAL <br class="md:hidden"> PRIDE</span>
         </div>
-        <div class="nav-box flex items-center justify-center space-x-10 md:space-x-14 font-bold text-lg md:text-xl uppercase tracking-[0.15em] whitespace-nowrap">
+        
+        <nav class="nav-box flex items-center justify-center space-x-8 md:space-x-16 font-bold text-xs md:text-sm uppercase tracking-[0.3em] whitespace-nowrap">
             <a href="#home" class="text-emerald-950 hover:text-amber-600 transition">Home</a>
-            <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Products</a>
-            <button onclick="openGoalModal()" class="text-emerald-950 hover:text-amber-600 transition uppercase">OUR GOAL</button>
+            <a href="#products" class="text-emerald-950 hover:text-amber-600 transition">Collection</a>
+            <button onclick="openGoalModal()" class="text-emerald-950 hover:text-amber-600 transition">OUR GOAL</button>
             <a href="#contact" class="text-emerald-950 hover:text-amber-600 transition">Contact</a>
-        </div>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-[60vh] flex flex-col items-center justify-center py-20 text-center">
-        <span class="text-amber-500 font-bold tracking-[0.5em] uppercase text-2xl md:text-3xl mb-12 block">Sustainable Living</span>
-        <h1 class="text-6xl md:text-[10rem] font-bold leading-tight flex flex-col items-center">
-            <span>From Nature</span>
-            <span class="italic font-normal text-amber-500 opacity-90 mt-4">To Nature</span>
-        </h1>
-    </section>
-
-    <!-- Products -->
-    <section id="products" class="py-32 container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
-            <!-- 1 -->
-            <div class="pinterest-card p-8 group">
-                <img src="tray.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-500">
-                <h3 class="text-2xl font-bold mb-2">Serving Tray</h3>
-                <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Serving Tray', 599, '12 inch', '12 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full">Shop Now</button>
-            </div>
-            <!-- 2 -->
-            <div class="pinterest-card p-8 group">
-                <img src="tissue.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-500">
-                <h3 class="text-2xl font-bold mb-2">Tissue Holder</h3>
-                <p class="text-xl text-amber-500 font-bold mb-6">৳ 399</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full">Shop Now</button>
-            </div>
-            <!-- 3 -->
-            <div class="pinterest-card p-8 group">
-                <img src="stand.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-500">
-                <h3 class="text-2xl font-bold mb-2">Table Organizer</h3>
-                <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Table Organizer', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full">Shop Now</button>
-            </div>
-            <!-- 4 -->
-            <div class="pinterest-card p-8 group">
-                <img src="tray2.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-500">
-                <h3 class="text-2xl font-bold mb-2">Spoon Organizer</h3>
-                <p class="text-xl text-amber-500 font-bold mb-6">৳ 599</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Spoon Organizer', 599, '14 inch', '11 inch', '4 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full">Shop Now</button>
-            </div>
-            <!-- 5 -->
-            <div class="pinterest-card p-8 group">
-                <img src="shitol_paty.jpg" class="rounded-2xl aspect-square object-cover mb-8 group-hover:scale-105 transition duration-500">
-                <h3 class="text-2xl font-bold mb-2">Cane Tray with Shitol Paty</h3>
-                <p class="text-xl text-amber-500 font-bold mb-6">৳ 499</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Cane Tray with Shitol Paty', 499, '11 inch', '9 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full">Shop Now</button>
-            </div>
+    <!-- HERO VISION -->
+    <section id="home" class="min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
+        <div class="max-w-4xl">
+            <span class="text-amber-500 font-bold tracking-[0.8em] uppercase text-sm mb-12 block">A Conscious Vision</span>
+            <h1 class="text-7xl md:text-[11rem] font-bold leading-[0.85] flex flex-col items-center mb-10">
+                <span>From Nature</span>
+                <span class="italic font-light text-amber-500/80 mt-2">To Nature</span>
+            </h1>
+            <p class="text-stone-400 text-lg md:text-2xl font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+                Handcrafted treasures for the mindful home. Rooted in heritage, woven for a sustainable tomorrow.
+            </p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-black/40 py-24 border-t border-white/5 text-center">
-        <h3 class="text-5xl font-serif italic mb-16">Bengal Pride</h3>
-        <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-16 text-lg font-bold text-amber-500 uppercase tracking-widest">
-            <a href="https://facebook.com/bengalpride" class="flex items-center space-x-3 hover:text-white transition">
-                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+    <!-- PRODUCT COLLECTION (PINTEREST GRID) -->
+    <section id="products" class="py-32 container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 items-stretch">
+            
+            <!-- 1. Serving Tray -->
+            <div class="pinterest-card p-10 group">
+                <div class="relative overflow-hidden rounded-[2rem] mb-10 aspect-[4/5]">
+                    <img src="tray.jpg" class="product-img w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 floating-price text-white font-bold">৳ 599</div>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tight">Serving Tray</h3>
+                <div class="flex-grow"></div>
+                <button onclick="openCheckout('Serving Tray', 599, '12 inch', '12 inch', '3 inch', 'Cane')" class="btn-premium py-5 rounded-2xl w-full">Shop This Piece</button>
+            </div>
+
+            <!-- 2. Tissue Holder -->
+            <div class="pinterest-card p-10 group">
+                <div class="relative overflow-hidden rounded-[2rem] mb-10 aspect-[4/5]">
+                    <img src="tissue.jpg" class="product-img w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 floating-price text-white font-bold">৳ 399</div>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tight">Tissue Holder</h3>
+                <div class="flex-grow"></div>
+                <button onclick="openCheckout('Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl w-full">Shop This Piece</button>
+            </div>
+
+            <!-- 3. Table Organizer -->
+            <div class="pinterest-card p-10 group">
+                <div class="relative overflow-hidden rounded-[2rem] mb-10 aspect-[4/5]">
+                    <img src="stand.jpg" class="product-img w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 floating-price text-white font-bold">৳ 599</div>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tight">Table Organizer</h3>
+                <div class="flex-grow"></div>
+                <button onclick="openCheckout('Table Organizer', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl w-full">Shop This Piece</button>
+            </div>
+
+            <!-- 4. Spoon Organizer -->
+            <div class="pinterest-card p-10 group">
+                <div class="relative overflow-hidden rounded-[2rem] mb-10 aspect-[4/5]">
+                    <img src="tray2.jpg" class="product-img w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 floating-price text-white font-bold">৳ 599</div>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tight">Spoon Organizer</h3>
+                <div class="flex-grow"></div>
+                <button onclick="openCheckout('Spoon Organizer', 599, '14 inch', '11 inch', '4 inch', 'Hogla leaves')" class="btn-premium py-5 rounded-2xl w-full">Shop This Piece</button>
+            </div>
+
+            <!-- 5. Shitol Paty Tray -->
+            <div class="pinterest-card p-10 group">
+                <div class="relative overflow-hidden rounded-[2rem] mb-10 aspect-[4/5]">
+                    <img src="shitol_paty.jpg" class="product-img w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 floating-price text-white font-bold">৳ 499</div>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tight">Cane Tray with Shitol Paty</h3>
+                <div class="flex-grow"></div>
+                <button onclick="openCheckout('Cane Tray with Shitol Paty', 499, '11 inch', '9 inch', '3 inch', 'Cane')" class="btn-premium py-5 rounded-2xl w-full">Shop This Piece</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER WITH ICONS -->
+    <footer id="contact" class="py-32 border-t border-white/5 text-center bg-black/20 backdrop-blur-xl relative overflow-hidden">
+        <h3 class="text-6xl font-serif italic mb-16 tracking-tighter">Bengal Pride</h3>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center space-y-12 md:space-y-0 md:space-x-20 text-sm font-bold text-amber-500/80 tracking-[0.4em]">
+            <a href="https://facebook.com/bengalpride" class="flex items-center space-x-4 hover:text-white transition">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
                 <span class="normal-case">Bengal Pride</span>
             </a>
-            <a href="https://instagram.com/bengalpride.global" class="flex items-center space-x-3 hover:text-white transition">
-                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            
+            <a href="https://instagram.com/bengalpride.global" class="flex items-center space-x-4 hover:text-white transition">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5 5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
                 <span class="lowercase">bengalpride.global</span>
             </a>
-            <div class="flex items-center space-x-3">
-                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.98L4.69 19.8L5.52 16.7L5.34 16.43C4.61 15.26 4.22 13.92 4.22 11.91C4.22 7.37 7.91 3.67 12.05 3.67M9.75 7.05C9.56 7.05 9.25 7.12 8.99 7.4C8.73 7.68 8 8.37 8 9.76C8 11.15 9 12.49 9.15 12.69C9.3 12.89 11.1 15.69 13.86 16.88C14.52 17.17 15.02 17.33 15.42 17.46C16.08 17.67 16.68 17.64 17.17 17.57C17.71 17.49 18.84 16.88 19.07 16.24C19.3 15.6 19.3 15.05 19.23 14.94C19.16 14.83 18.97 14.77 18.69 14.63C18.41 14.49 17.03 13.81 16.77 13.72C16.52 13.63 16.33 13.58 16.15 13.86C15.96 14.14 15.45 14.77 15.3 14.94C15.15 15.11 15 15.13 14.71 15C14.44 14.85 13.56 14.56 12.51 13.63C11.69 12.9 11.14 12 10.98 11.72C10.82 11.44 10.96 11.29 11.1 11.15C11.23 11.01 11.39 10.82 11.53 10.66C11.67 10.5 11.71 10.38 11.81 10.18C11.9 9.97 11.86 9.8 11.79 9.66C11.72 9.5 11.21 8.24 11 7.73C10.79 7.23 10.58 7.3 10.42 7.29C10.28 7.29 10.12 7.28 9.96 7.28C9.8 7.28 9.75 7.05 9.75 7.05Z"/></svg>
+            
+            <div class="flex items-center space-x-4">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.98L4.69 19.8L5.52 16.7L5.34 16.43C4.61 15.26 4.22 13.92 4.22 11.91C4.22 7.37 7.91 3.67 12.05 3.67M9.75 7.05C9.56 7.05 9.25 7.12 8.99 7.4C8.73 7.68 8 8.37 8 9.76C8 11.15 9 12.49 9.15 12.69C9.3 12.89 11.1 15.69 13.86 16.88C14.52 17.17 15.02 17.33 15.42 17.46C16.08 17.67 16.68 17.64 17.17 17.57C17.71 17.49 18.84 16.88 19.07 16.24C19.3 15.6 19.3 15.05 19.23 14.94C19.16 14.83 18.97 14.77 18.69 14.63C18.41 14.49 17.03 13.81 16.77 13.72C16.52 13.63 16.33 13.58 16.15 13.86C15.96 14.14 15.45 14.77 15.3 14.94C15.15 15.11 15 15.13 14.71 15C14.44 14.85 13.56 14.56 12.51 13.63C11.69 12.9 11.14 12 10.98 11.72C10.82 11.44 10.96 11.29 11.1 11.15C11.23 11.01 11.39 10.82 11.53 10.66C11.67 10.5 11.71 10.38 11.81 10.18C11.9 9.97 11.86 9.8 11.79 9.66C11.72 9.5 11.21 8.24 11 7.73C10.79 7.23 10.58 7.3 10.42 7.29C10.28 7.29 10.12 7.28 9.96 7.28C9.8 7.28 9.75 7.05 9.75 7.05Z"/></svg>
                 <span>01305-552647</span>
             </div>
         </div>
+        <p class="mt-20 opacity-20 text-[10px] uppercase tracking-[1em]">Handcrafted for Generations</p>
     </footer>
 
     <script>
@@ -220,45 +278,27 @@
             const total = currentPrice + delivFee;
             const btn = document.getElementById('placeOrderBtn');
 
-            if(!name || !addr || !phone) { alert("Please fill all details."); return; }
+            if(!name || !addr || !phone) { alert("Kindly provide your details to proceed."); return; }
 
-            btn.innerText = "Processing Order... Please Wait";
+            btn.innerText = "AUTHENTICATING...";
             btn.disabled = true;
             btn.style.opacity = "0.5";
 
             const orderId = "BP-" + Math.floor(1000 + Math.random() * 9000);
-            const data = { 
-                "Order_ID": orderId, 
-                "Date": new Date().toLocaleString(), 
-                "Customer_Name": name, 
-                "Phone": phone, 
-                "Address": addr, 
-                "Product_Name": currentItem, 
-                "Product_Price": currentPrice, 
-                "Delivery_Fee": delivFee, 
-                "Grand_Total": total, 
-                "Status": "Pending" 
-            };
+            const data = { "Order_ID": orderId, "Date": new Date().toLocaleString(), "Customer_Name": name, "Phone": phone, "Address": addr, "Product_Name": currentItem, "Product_Price": currentPrice, "Delivery_Fee": delivFee, "Grand_Total": total, "Status": "Pending" };
 
             try {
-                const res = await fetch(SHEETDB_URL, { 
-                    method: 'POST', 
-                    headers: {'Content-Type': 'application/json'}, 
-                    body: JSON.stringify({data: [data]}) 
-                });
+                const res = await fetch(SHEETDB_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({data: [data]}) });
                 if(res.ok) {
                     document.getElementById('invID').innerText = orderId;
                     document.getElementById('invName').innerText = name;
                     document.getElementById('invPhone').innerText = phone;
-                    document.getElementById('invProduct').innerText = currentItem + " (৳" + currentPrice + ")";
+                    document.getElementById('invProduct').innerText = currentItem;
                     document.getElementById('invTotal').innerText = "৳ " + total;
                     document.getElementById('checkoutForm').style.display = 'none';
                     document.getElementById('invoiceContent').classList.remove('hidden');
                 }
-            } catch(e) { 
-                alert("Server busy. Please try again."); 
-                btn.innerText = "Place Order Now"; btn.disabled = false; btn.style.opacity = "1";
-            }
+            } catch(e) { alert("Connection Error. Please retry."); btn.innerText = "Confirm Order"; btn.disabled = false; }
         }
     </script>
 </body>
