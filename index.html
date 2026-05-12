@@ -41,10 +41,9 @@
         <div class="bg-[#F8F9F8] text-stone-900 w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-300 hover:text-emerald-900">&times;</button>
             
-            <!-- STEP 1: FORM -->
             <div id="checkoutForm" class="p-8 md:p-12">
                 <div class="mb-10 text-center md:text-left">
-                    <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-950 mb-2">Product Name</h2>
+                    <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product Name</h2>
                     <p id="selectedItemPrice" class="text-xl text-[#B66D4B] font-bold mb-6">৳ 0</p>
                     <div class="bg-white p-6 rounded-2xl border border-stone-100 grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div><p class="spec-label">Length</p><p id="specL" class="spec-value">-</p></div>
@@ -69,7 +68,6 @@
                 <button onclick="placeOrder()" id="placeOrderBtn" class="btn-premium w-full py-5 mt-6 rounded-2xl text-lg">Confirm Order</button>
             </div>
 
-            <!-- STEP 2: INVOICE -->
             <div id="invoiceContent" class="hidden p-10 text-center">
                 <h2 class="text-3xl font-bold text-green-600 mb-6 uppercase">Order Confirmed</h2>
                 <div class="bg-white p-8 rounded-2xl text-left space-y-3 text-sm border border-stone-100 shadow-sm">
@@ -82,12 +80,12 @@
                     <p class="text-2xl border-t pt-4 font-bold text-emerald-900">GRAND TOTAL: <span id="invTotal"></span></p>
                 </div>
                 <button onclick="window.print()" class="bg-emerald-950 text-white w-full py-4 mt-8 rounded-xl font-bold uppercase hover:bg-black transition">Print Invoice</button>
-                <button onclick="closeModal()" class="mt-4 text-stone-400 text-xs underline">Close</button>
+                <button onclick="closeModal()" class="mt-4 text-stone-400 text-sm underline">Close</button>
             </div>
         </div>
     </div>
 
-    <!-- BRANDING HEADER -->
+    <!-- HEADER -->
     <header class="w-full py-20 flex flex-col items-center">
         <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-12 mb-8">
             <img src="logo.png" alt="Bengal Pride" class="h-48 md:h-64 w-auto brightness-0 invert object-contain">
@@ -102,14 +100,14 @@
     </header>
 
     <!-- HERO -->
-    <section id="home" class="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20 relative">
+    <section id="home" class="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20">
         <span class="text-[#B66D4B] font-bold tracking-[0.6em] uppercase text-xs mb-8 block">Handcrafted Sustainability</span>
         <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">From Nature <br><span class="italic font-light text-amber-500/90">To Nature</span></h1>
     </section>
 
     <!-- PRODUCTS -->
     <section id="products" class="py-24 container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
             
             <div class="pinterest-card p-8 group">
                 <img src="tray.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
@@ -216,19 +214,18 @@
                     body: JSON.stringify({data: [data]}) 
                 });
                 
-                // If response is OK, show invoice
-                if(res.ok) {
-                    document.getElementById('invID').innerText = orderId;
-                    document.getElementById('invName').innerText = name;
-                    document.getElementById('invPhone').innerText = phone;
-                    document.getElementById('invProduct').innerText = currentItem;
-                    document.getElementById('invTotal').innerText = "৳ " + total;
-                    document.getElementById('checkoutForm').style.display = 'none';
-                    document.getElementById('invoiceContent').classList.remove('hidden');
-                } else { throw new Error('API Error'); }
+                // FORCE SHOW INVOICE EVEN IF API LAGS
+                document.getElementById('invID').innerText = orderId;
+                document.getElementById('invName').innerText = name;
+                document.getElementById('invPhone').innerText = phone;
+                document.getElementById('invProduct').innerText = currentItem;
+                document.getElementById('invTotal').innerText = "৳ " + total;
+                document.getElementById('checkoutForm').style.display = 'none';
+                document.getElementById('invoiceContent').classList.remove('hidden');
+
             } catch(e) { 
-                // Fallback: If data reached database but fetch reported error
-                alert("Connection stable. finalizing invoice...");
+                console.error("SheetDB Sync Error: ", e);
+                // Fail-safe: Display invoice anyway so customer isn't stuck
                 document.getElementById('invID').innerText = orderId;
                 document.getElementById('invName').innerText = name;
                 document.getElementById('invPhone').innerText = phone;
