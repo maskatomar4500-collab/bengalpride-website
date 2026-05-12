@@ -100,7 +100,7 @@
     </header>
 
     <!-- HERO -->
-    <section id="home" class="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20">
+    <section id="home" class="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20 relative">
         <span class="text-[#B66D4B] font-bold tracking-[0.6em] uppercase text-xs mb-8 block">Handcrafted Sustainability</span>
         <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">From Nature <br><span class="italic font-light text-amber-500/90">To Nature</span></h1>
     </section>
@@ -108,7 +108,6 @@
     <!-- PRODUCTS -->
     <section id="products" class="py-24 container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
-            
             <div class="pinterest-card p-8 group">
                 <img src="tray.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
                 <h3 class="text-2xl font-bold mb-4 tracking-tight">Serving Tray</h3>
@@ -116,7 +115,6 @@
                 <p class="text-xl font-bold text-amber-500 mb-6">৳ 599</p>
                 <button onclick="openCheckout('Serving Tray', 599, '12 inch', '12 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
             </div>
-
             <div class="pinterest-card p-8 group">
                 <img src="tissue.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
                 <h3 class="text-2xl font-bold mb-4 tracking-tight">Tissue Holder</h3>
@@ -124,7 +122,6 @@
                 <p class="text-xl font-bold text-amber-500 mb-6">৳ 399</p>
                 <button onclick="openCheckout('Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
             </div>
-
             <div class="pinterest-card p-8 group">
                 <img src="stand.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
                 <h3 class="text-2xl font-bold mb-4 tracking-tight">Table Organizer</h3>
@@ -132,7 +129,6 @@
                 <p class="text-xl font-bold text-amber-500 mb-6">৳ 599</p>
                 <button onclick="openCheckout('Table Organizer', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
             </div>
-
             <div class="pinterest-card p-8 group">
                 <img src="tray2.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
                 <h3 class="text-2xl font-bold mb-4 tracking-tight">Spoon Organizer</h3>
@@ -140,7 +136,6 @@
                 <p class="text-xl font-bold text-amber-500 mb-6">৳ 599</p>
                 <button onclick="openCheckout('Spoon Organizer', 599, '14 inch', '11 inch', '4 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
             </div>
-
             <div class="pinterest-card p-8 group">
                 <img src="shitol_paty.jpg" class="rounded-[1.5rem] mb-6 aspect-square object-cover">
                 <h3 class="text-2xl font-bold mb-4 tracking-tight">Cane Tray with Shitol Paty</h3>
@@ -148,19 +143,18 @@
                 <p class="text-xl font-bold text-amber-500 mb-6">৳ 499</p>
                 <button onclick="openCheckout('Cane Tray with Shitol Paty', 499, '11 inch', '9 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
             </div>
-
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact" class="py-24 border-t border-white/5 bg-black/10 backdrop-blur-md text-center">
-        <h3 class="text-4xl font-serif italic mb-12">Bengal Pride</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 text-[10px] font-bold uppercase tracking-widest px-6">
-            <a href="https://www.facebook.com/share/1Co7TaCu7P/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center space-x-3 text-amber-500 hover:text-white transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg><span>Bengal Pride</span></a>
-            <a href="https://www.instagram.com/bengalpride.global" target="_blank" class="flex items-center justify-center space-x-3 text-amber-500 hover:text-white transition lowercase"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span>bengalpride.global</span></a>
-            <a href="https://wa.me/8801305552647" target="_blank" class="flex items-center justify-center space-x-3 text-amber-500 hover:text-white transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.397-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.05-.148-.471-1.138-.645-1.554-.17-.41-.344-.354-.471-.354-.121-.001-.26-.001-.403-.001-.144 0-.378.054-.575.271-.198.216-.755.738-.755 1.8 0 1.062.774 2.087.882 2.235.109.125 1.524 2.327 3.692 3.264.516.222.918.355 1.233.456.518.165.989.141 1.362.085.416-.061 1.275-.339 1.454-.664.179-.325.179-.604.126-.662-.054-.059-.198-.1-.496-.248zM12.004 0C5.374 0 0 5.374 0 12.004c0 2.115.546 4.184 1.583 6.01L0 24l6.128-1.608a11.933 11.933 0 005.876 1.512c6.63 0 12.004-5.374 12.004-12.004C24 5.374 18.625 0 12.004 0z"/></svg><span>01305-552647</span></a>
-            <a href="mailto:bengalpride.global@gmail.com" class="flex items-center justify-center space-x-3 text-amber-500 hover:text-white transition lowercase"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.117 10-8.117v11.817h-20z"/></svg><span>bengalpride.global@gmail.com</span></a>
-            <div class="flex items-center justify-center space-x-3 text-amber-500 font-bold"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-7.5 3.303-7.5 7.5 0 3.743 3.123 8.356 7.5 13.5 4.377-5.144 7.5-9.757 7.5-13.5 0-4.197-3.301-7.5-7.5-7.5zm0 11c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/></svg><span class="normal-case tracking-tight">Basundhara R/A, Dhaka</span></div>
+    <footer id="contact" class="py-24 border-t border-white/5 bg-black/10 backdrop-blur-md text-center text-amber-500 font-bold uppercase tracking-widest text-[10px] px-6">
+        <h3 class="text-4xl font-serif italic mb-12 lowercase text-white normal-case">Bengal Pride</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
+            <a href="https://www.facebook.com/share/1Co7TaCu7P/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center space-x-3 hover:text-white transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg><span>Bengal Pride</span></a>
+            <a href="https://www.instagram.com/bengalpride.global" target="_blank" class="flex items-center justify-center space-x-3 hover:text-white transition lowercase"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span>bengalpride.global</span></a>
+            <a href="https://wa.me/8801305552647" target="_blank" class="flex items-center justify-center space-x-3 hover:text-white transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.397-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.05-.148-.471-1.138-.645-1.554-.17-.41-.344-.354-.471-.354-.121-.001-.26-.001-.403-.001-.144 0-.378.054-.575.271-.198.216-.755.738-.755 1.8 0 1.062.774 2.087.882 2.235.109.125 1.524 2.327 3.692 3.264.516.222.918.355 1.233.456.518.165.989.141 1.362.085.416-.061 1.275-.339 1.454-.664.179-.325.179-.604.126-.662-.054-.059-.198-.1-.496-.248zM12.004 0C5.374 0 0 5.374 0 12.004c0 2.115.546 4.184 1.583 6.01L0 24l6.128-1.608a11.933 11.933 0 005.876 1.512c6.63 0 12.004-5.374 12.004-12.004C24 5.374 18.625 0 12.004 0z"/></svg><span>01305-552647</span></a>
+            <a href="mailto:bengalpride.global@gmail.com" class="flex items-center justify-center space-x-3 hover:text-white transition lowercase"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.117 10-8.117v11.817h-20z"/></svg><span>bengalpride.global@gmail.com</span></a>
+            <div class="flex items-center justify-center space-x-3 transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-7.5 3.303-7.5 7.5 0 3.743 3.123 8.356 7.5 13.5 4.377-5.144 7.5-9.757 7.5-13.5 0-4.197-3.301-7.5-7.5-7.5zm0 11c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/></svg><span class="normal-case tracking-tight">Basundhara R/A, Dhaka</span></div>
         </div>
     </footer>
 
@@ -205,7 +199,12 @@
             btn.disabled = true;
 
             const orderId = "BP-" + Math.floor(1000 + Math.random() * 9000);
-            const data = { "Order_ID": orderId, "Date": new Date().toLocaleString(), "Customer_Name": name, "Phone": phone, "Address": addr, "Product_Name": currentItem, "Product_Price": currentPrice, "Delivery_Fee": delivFee, "Grand_Total": total, "Status": "Pending" };
+            
+            // Format the date specifically to avoid numerical conversion issues in Sheets
+            const now = new Date();
+            const dateString = "\u00A0" + now.getDate() + "-" + (now.getMonth() + 1) + "-" + now.getFullYear() + " | " + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const data = { "Order_ID": orderId, "Date": dateString, "Customer_Name": name, "Phone": phone, "Address": addr, "Product_Name": currentItem, "Product_Price": currentPrice, "Delivery_Fee": delivFee, "Grand_Total": total, "Status": "Pending" };
 
             try {
                 const res = await fetch(SHEETDB_URL, { 
@@ -214,7 +213,7 @@
                     body: JSON.stringify({data: [data]}) 
                 });
                 
-                // FORCE SHOW INVOICE EVEN IF API LAGS
+                // Show invoice regardless of fetch response to ensure UX
                 document.getElementById('invID').innerText = orderId;
                 document.getElementById('invName').innerText = name;
                 document.getElementById('invPhone').innerText = phone;
@@ -224,8 +223,6 @@
                 document.getElementById('invoiceContent').classList.remove('hidden');
 
             } catch(e) { 
-                console.error("SheetDB Sync Error: ", e);
-                // Fail-safe: Display invoice anyway so customer isn't stuck
                 document.getElementById('invID').innerText = orderId;
                 document.getElementById('invName').innerText = name;
                 document.getElementById('invPhone').innerText = phone;
