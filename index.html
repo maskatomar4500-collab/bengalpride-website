@@ -1,299 +1,1569 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengal Pride | From Nature To Nature</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { 
-            --brand-bg: #cec1ab; 
-            --forest-green: #0B241C; 
-            --tan-accent: #B68D5D; 
-            --text-main: #1A1A1A;
-        }
-        body { font-family: 'Inter', sans-serif; background-color: var(--brand-bg); color: var(--forest-green); margin: 0; overflow-x: hidden; }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* MASSIVE CTA BUTTON STYLE */
-        .btn-massive {
-            background-color: var(--tan-accent);
-            color: white; font-weight: 700; border-radius: 100px;
-            padding: 24px 64px;
-            font-size: 16px;
-            letter-spacing: 0.2em;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 0 15px 40px rgba(182, 141, 93, 0.3);
-            display: inline-block;
-            text-transform: uppercase;
-        }
-        .btn-massive:hover { filter: brightness(1.1); transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bengal Pride | From Nature To Nature</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand:   #E8DDD0;
+      --linen:  #F5F0E8;
+      --forest: #1C3028;
+      --bark:   #5C3D2E;
+      --gold:   #B8974A;
+      --mist:   #D4C9B8;
+      --ink:    #1A1A1A;
+    }
 
-        .btn-premium {
-            background: linear-gradient(135deg, #D4AF37 0%, #B66D4B 100%);
-            color: #0B241C; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            display: inline-block; text-align: center;
-        }
-        .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); filter: brightness(1.1); }
-        
-        .nav-box {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 15px 50px; border-radius: 100px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            margin-top: 25px;
-        }
-        .nav-link { font-size: 12px; font-weight: 800; letter-spacing: 0.2em; color: var(--forest-green); text-transform: uppercase; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .info-modal { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); display: none; overflow-y: auto; }
-        
-        .pinterest-card { 
-            border-radius: 28px; overflow: hidden; height: 100%; display: flex; flex-direction: column; 
-            background: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.5s ease;
-        }
-        .pinterest-card:hover { border-color: var(--tan-accent); background: white; transform: translateY(-5px); }
+    html { scroll-behavior: smooth; }
 
-        .spec-label { font-size: 0.65rem; color: #9ca3af; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
-        .spec-value { font-size: 0.9rem; font-weight: 500; color: #064e3b; }
-    </style>
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--sand);
+      color: var(--forest);
+      overflow-x: hidden;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px;
+    }
+
+    /* ── STICKY NAV ── */
+    #mainNav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #mainNav.scrolled {
+      background: rgba(232, 221, 208, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(28,48,40,0.1);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img { height: 36px; width: auto; filter: brightness(0) saturate(100%) invert(16%) sepia(28%) saturate(600%) hue-rotate(110deg); }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a, .nav-links button {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover, .nav-links button:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--forest) !important;
+      color: var(--linen) !important;
+      opacity: 1 !important;
+      padding: 10px 22px !important;
+      border-radius: 100px !important;
+      font-size: 10px !important;
+      letter-spacing: 0.2em !important;
+    }
+    .nav-cta:hover { background: var(--bark) !important; }
+
+    /* ── MOBILE HAMBURGER ── */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { width: 24px; height: 1.5px; background: var(--forest); display: block; transition: all 0.3s ease; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 0;
+      background: var(--linen);
+      z-index: 190;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--forest);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover, .mobile-menu button:hover { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-inner { padding: 16px 20px; }
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 9vw, 120px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--forest);
+      margin-bottom: 32px;
+    }
+    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--bark); }
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--forest);
+      opacity: 0.6;
+      max-width: 380px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--forest);
+      color: var(--linen);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 18px 44px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .btn-primary:hover {
+      background: var(--bark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(28,48,40,0.25);
+    }
+    .btn-primary svg { transition: transform 0.3s ease; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--forest);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 17px 36px;
+      border-radius: 100px;
+      border: 1px solid rgba(28,48,40,0.3);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover { border-color: var(--forest); background: rgba(28,48,40,0.05); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bounce 2.4s ease-in-out infinite;
+    }
+    .hero-scroll-hint span { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--forest);
+      color: var(--linen);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 72px);
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+    .trust-item svg { opacity: 0.8; flex-shrink: 0; }
+
+    /* ── BADGES SECTION ── */
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 64px 24px 0;
+    }
+    .badge-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(28,48,40,0.06);
+      border: 1px solid rgba(28,48,40,0.1);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--forest);
+      letter-spacing: 0.03em;
+    }
+    .badge-pill svg { color: var(--gold); flex-shrink: 0; }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--forest);
+    }
+    .section-title em { font-style: italic; color: var(--bark); }
+
+    /* ── COLLECTION ── */
+    #collection { padding: 96px 24px; max-width: 1280px; margin: 0 auto; }
+    .collection-header { text-align: center; margin-bottom: 64px; }
+    .collection-header p { font-size: 14px; opacity: 0.55; margin-top: 16px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+    .product-card {
+      background: var(--linen);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease;
+      border: 1px solid rgba(28,48,40,0.06);
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(28,48,40,0.12);
+    }
+    .product-card:hover .product-img { transform: scale(1.04); }
+
+    .product-img-wrap {
+      overflow: hidden;
+      background: var(--mist);
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--forest);
+      color: var(--linen);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .product-info {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--forest);
+    }
+    .product-price {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--bark);
+      white-space: nowrap;
+    }
+    .product-material {
+      font-size: 12px;
+      color: var(--forest);
+      opacity: 0.45;
+      margin-bottom: 18px;
+    }
+    .product-dims {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .dim-item { display: flex; flex-direction: column; gap: 2px; }
+    .dim-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.4; }
+    .dim-val { font-size: 12px; font-weight: 500; }
+    .btn-buy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--forest);
+      color: var(--linen);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: auto;
+      min-height: 48px;
+    }
+    .btn-buy:hover { background: var(--bark); }
+    .btn-buy:active { transform: scale(0.98); }
+
+    /* ── STORY / ABOUT ── */
+    #about {
+      background: var(--forest);
+      color: var(--linen);
+      padding: 96px 24px;
+    }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 48px; } }
+    .about-label { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .about-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+    .about-title em { font-style: italic; color: var(--gold); }
+    .about-body { font-size: 15px; line-height: 1.8; opacity: 0.65; margin-bottom: 36px; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(245,240,232,0.1);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label { font-size: 11px; opacity: 0.45; letter-spacing: 0.08em; margin-top: 4px; }
+    .about-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .about-img-card {
+      background: rgba(245,240,232,0.08);
+      border-radius: 16px;
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .about-img-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+    .about-img-card:first-child { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* ── DELIVERY INFO ── */
+    .delivery-band {
+      background: var(--linen);
+      border-top: 1px solid rgba(28,48,40,0.08);
+      border-bottom: 1px solid rgba(28,48,40,0.08);
+      padding: 32px 24px;
+    }
+    .delivery-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .delivery-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border-radius: 14px;
+      padding: 16px 24px;
+      border: 1px solid rgba(28,48,40,0.07);
+      flex: 1;
+      min-width: 200px;
+      max-width: 280px;
+    }
+    .delivery-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(28,48,40,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--forest);
+    }
+    .delivery-item-text p { font-size: 11px; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.1em; }
+    .delivery-item-text strong { font-size: 16px; font-weight: 500; }
+
+    /* ── TESTIMONIALS ── */
+    #reviews {
+      padding: 96px 24px;
+      text-align: center;
+    }
+    .reviews-inner { max-width: 1100px; margin: 0 auto; }
+    .reviews-header { margin-bottom: 56px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .reviews-grid { grid-template-columns: 1fr; } }
+    .review-card {
+      background: var(--linen);
+      border-radius: 20px;
+      padding: 28px;
+      text-align: left;
+      border: 1px solid rgba(28,48,40,0.06);
+    }
+    .stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .stars svg { color: var(--gold); }
+    .review-text { font-size: 14px; line-height: 1.75; opacity: 0.7; margin-bottom: 20px; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .reviewer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--linen);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-size: 13px; font-weight: 500; }
+    .reviewer-loc { font-size: 11px; opacity: 0.45; }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact {
+      background: var(--ink);
+      color: var(--linen);
+      padding: 80px 24px 48px;
+    }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(245,240,232,0.08);
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) { .contact-top { grid-template-columns: 1fr; gap: 48px; } }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .footer-brand em { font-style: italic; color: var(--gold); }
+    .footer-tagline { font-size: 13px; opacity: 0.4; line-height: 1.7; max-width: 280px; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--linen);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      font-size: 14px;
+    }
+    .contact-link:hover { opacity: 1; }
+    .contact-link-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(245,240,232,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy { font-size: 12px; opacity: 0.3; }
+    .footer-loc { font-size: 12px; opacity: 0.3; display: flex; align-items: center; gap: 6px; }
+
+    /* ── FLOATING WHATSAPP ── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 300;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: wa-pulse 3s infinite;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); animation: none; }
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 6px 36px rgba(37,211,102,0.65); }
+    }
+    .wa-tooltip {
+      position: absolute;
+      right: 68px;
+      background: var(--ink);
+      color: var(--linen);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .wa-float:hover .wa-tooltip { opacity: 1; }
+
+    /* ── CHECKOUT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 15, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+    @media (min-width: 640px) {
+      .modal-overlay { align-items: center; padding: 24px; }
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-sheet {
+      background: var(--linen);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 28px 28px 0 0;
+      overflow: hidden;
+      max-height: 92svh;
+      overflow-y: auto;
+      animation: slideUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @media (min-width: 640px) {
+      .modal-sheet { border-radius: 28px; animation: fadeScale 0.35s cubic-bezier(0.23,1,0.32,1); }
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @keyframes fadeScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    .modal-handle { width: 40px; height: 4px; background: rgba(28,48,40,0.15); border-radius: 2px; margin: 16px auto 0; }
+    .modal-body { padding: 28px 28px 32px; }
+    @media (min-width: 640px) { .modal-handle { display: none; } .modal-body { padding: 36px; } }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(28,48,40,0.08);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(28,48,40,0.15); }
+    .modal-product-header { margin-bottom: 24px; }
+    .modal-product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+    .modal-product-price { font-size: 18px; color: var(--bark); font-weight: 500; margin-bottom: 20px; }
+    .modal-specs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(28,48,40,0.06);
+    }
+    .modal-spec-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.45; margin-bottom: 4px; }
+    .modal-spec-val { font-size: 13px; font-weight: 500; color: var(--forest); }
+    .form-group { margin-bottom: 14px; }
+    .form-input {
+      width: 100%;
+      background: white;
+      border: 1px solid rgba(28,48,40,0.12);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--forest);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-input:focus { border-color: var(--forest); }
+    .form-select {
+      width: 100%;
+      background: white;
+      border: 1px solid rgba(28,48,40,0.12);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--forest);
+      outline: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231C3028' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    .modal-total {
+      background: var(--forest);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .modal-total-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--linen); opacity: 0.5; }
+    .modal-total-amt { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--linen); }
+    .btn-confirm {
+      width: 100%;
+      background: var(--gold);
+      color: var(--forest);
+      border: none;
+      border-radius: 14px;
+      padding: 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 56px;
+    }
+    .btn-confirm:hover { background: var(--bark); color: var(--linen); transform: translateY(-1px); }
+    .btn-confirm:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ── INVOICE ── */
+    .invoice-wrap { padding: 36px; text-align: center; }
+    .invoice-check {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(28,48,40,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--forest);
+    }
+    .invoice-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--forest);
+    }
+    .invoice-sub { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+    .invoice-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      margin-bottom: 24px;
+      border: 1px solid rgba(28,48,40,0.07);
+    }
+    .invoice-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(28,48,40,0.06);
+    }
+    .invoice-row:last-child { border: none; padding-bottom: 0; }
+    .invoice-row .lbl { opacity: 0.45; }
+    .invoice-row .val { font-weight: 500; }
+    .invoice-total-row {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 16px;
+      margin-top: 4px;
+      border-top: 2px solid var(--forest);
+    }
+    .invoice-total-row span:first-child { font-size: 14px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; }
+    .invoice-total-row span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--bark);
+    }
+    .btn-print {
+      width: 100%;
+      background: var(--forest);
+      color: var(--linen);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: background 0.2s;
+    }
+    .btn-print:hover { background: var(--bark); }
+    .btn-close-link { font-size: 13px; color: var(--forest); opacity: 0.45; cursor: pointer; text-decoration: underline; background: none; border: none; }
+
+    /* ── GOAL MODAL ── */
+    #goalModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,15,0.8);
+      backdrop-filter: blur(10px);
+      z-index: 600;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #goalModal.active { display: flex; }
+    .goal-card {
+      background: var(--linen);
+      border-radius: 28px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      border-top: 4px solid var(--gold);
+    }
+    .goal-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(28,48,40,0.07); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; color: var(--forest);
+    }
+    .goal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 400; margin-bottom: 24px; color: var(--forest);
+    }
+    .goal-body { font-size: 15px; line-height: 1.8; opacity: 0.65; font-style: italic; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body > *:not(#printArea) { display: none !important; }
+      #printArea { display: block !important; padding: 40px; }
+    }
+  </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- OUR GOAL MODAL -->
-    <div id="goalModal" style="display: none;" class="fixed inset-0 z-[110] info-modal flex items-center justify-center p-4">
-        <div class="bg-[#FDFCF8] text-stone-900 w-full max-w-lg rounded-[2rem] p-10 shadow-2xl relative text-center border-t-8 border-[#B66D4B]">
-            <button onclick="closeGoalModal()" class="absolute top-6 right-6 text-2xl text-stone-400 hover:text-red-800">&times;</button>
-            <h2 class="text-3xl font-bold text-emerald-950 mb-6 uppercase tracking-tighter">OUR GOAL</h2>
-            <p class="text-lg leading-relaxed text-stone-600 italic">
-                "Building a greener future begins with the choices we make today. Through nature-inspired products and conscious living, we aim to turn sustainability into a lifestyle — not just a trend. Thank you for being part of this journey toward a cleaner, safer, and more sustainable world for the generations ahead."
-            </p>
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/8801305552647" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-tooltip">Chat with us</span>
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.397-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.05-.148-.471-1.138-.645-1.554-.17-.41-.344-.354-.471-.354-.121-.001-.26-.001-.403-.001-.144 0-.378.054-.575.271-.198.216-.755.738-.755 1.8 0 1.062.774 2.087.882 2.235.109.125 1.524 2.327 3.692 3.264.516.222.918.355 1.233.456.518.165.989.141 1.362.085.416-.061 1.275-.339 1.454-.664.179-.325.179-.604.126-.662-.054-.059-.198-.1-.496-.248zM12.004 0C5.374 0 0 5.374 0 12.004c0 2.115.546 4.184 1.583 6.01L0 24l6.128-1.608a11.933 11.933 0 005.876 1.512c6.63 0 12.004-5.374 12.004-12.004C24 5.374 18.625 0 12.004 0z"/>
+  </svg>
+</a>
+
+<!-- ── STICKY NAV ── -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="logo.png" alt="">
+      Bengal Pride
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#collection">Collection</a>
+      <a href="#about">Our Story</a>
+      <button onclick="openGoalModal()">Our Goal</button>
+      <a href="#contact">Contact</a>
+      <a href="#collection" class="nav-cta">Shop Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#collection" onclick="closeMobile()">Collection</a>
+  <a href="#about" onclick="closeMobile()">Our Story</a>
+  <button onclick="closeMobile(); openGoalModal();">Our Goal</button>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-eyebrow">Handcrafted in Bangladesh</div>
+  <h1 class="hero-h1">
+    From Nature<br><em>To Nature</em>
+  </h1>
+  <p class="hero-sub">Authentic, sustainable lifestyle products made from natural fibers by local artisans.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+    <a href="#collection" class="btn-primary">
+      Shop the Collection
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <button onclick="openGoalModal()" class="btn-outline">Our Mission</button>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <svg width="16" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 5.04 12.07 12.07 0 00-1.474 8.767 12.054 12.054 0 007.092 9.062 11.952 11.952 0 005.82 0 12.054 12.054 0 007.092-9.062 12.07 12.07 0 00-1.474-8.767z"/></svg>
+    100% Eco-Friendly
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Supporting Local Artisans
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0v10l-8 4-8-4V7"/></svg>
+    Cash on Delivery
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    Easy Returns
+  </div>
+</div>
+
+<!-- DELIVERY INFO BAND -->
+<div class="delivery-band">
+  <div class="delivery-inner">
+    <div class="delivery-item">
+      <div class="delivery-item-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <div class="delivery-item-text">
+        <p>Inside Dhaka</p>
+        <strong>৳80 Delivery</strong>
+      </div>
+    </div>
+    <div class="delivery-item">
+      <div class="delivery-item-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+      </div>
+      <div class="delivery-item-text">
+        <p>Outside Dhaka</p>
+        <strong>৳120 Delivery</strong>
+      </div>
+    </div>
+    <div class="delivery-item">
+      <div class="delivery-item-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <div class="delivery-item-text">
+        <p>Payment</p>
+        <strong>Cash on Delivery</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── COLLECTION ── -->
+<section id="collection">
+  <div class="collection-header fade-up">
+    <div class="section-label">Our Products</div>
+    <h2 class="section-title">Handcrafted <em>Collection</em></h2>
+    <p>Each piece woven by skilled artisans using traditional techniques passed down through generations.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="tray.jpg" alt="Serving Tray — handwoven cane" class="product-img">
+        <span class="product-tag">Bestseller</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Serving Tray</h3>
+          <span class="product-price">৳599</span>
         </div>
+        <p class="product-material">Handwoven Cane</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">3"</span></div>
+        </div>
+        <button class="btn-buy" onclick="openCheckout('Serving Tray',599,'12 inch','12 inch','3 inch','Cane')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
-    <div id="modalOverlay" style="display: none;" class="fixed inset-0 z-[100] info-modal flex items-start justify-center p-4 py-12">
-        <div class="bg-[#F8F9F8] text-stone-900 w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl font-bold z-20 text-stone-300 hover:text-emerald-900">&times;</button>
-            <div id="checkoutForm" class="p-8 md:p-12">
-                <div class="mb-10 text-center md:text-left">
-                    <h2 id="selectedItemName" class="text-4xl font-bold text-emerald-900 mb-2">Product</h2>
-                    <p id="selectedItemPrice" class="text-xl text-[#B66D4B] font-bold mb-6">৳ 0</p>
-                    <div class="bg-white p-6 rounded-2xl border border-stone-100 grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div><p class="spec-label">Length</p><p id="specL" class="spec-value">-</p></div>
-                        <div><p class="spec-label">Width</p><p id="specW" class="spec-value">-</p></div>
-                        <div><p class="spec-label">Height</p><p id="specH" class="spec-value">-</p></div>
-                        <div><p class="spec-label">Material</p><p id="specM" class="spec-value">-</p></div>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 bg-stone-100 rounded-xl outline-none focus:ring-2 focus:ring-[#B66D4B]">
-                    <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full p-4 bg-stone-100 rounded-xl outline-none focus:ring-2 focus:ring-[#B66D4B]">
-                    <textarea id="custAddr" placeholder="Delivery Address" class="w-full p-4 bg-stone-100 rounded-xl outline-none h-24"></textarea>
-                    <select id="deliveryZone" onchange="updateTotal()" class="w-full p-4 bg-stone-200 rounded-xl font-bold">
-                        <option value="80">Inside Dhaka (৳80)</option>
-                        <option value="120">Outside Dhaka (৳120)</option>
-                    </select>
-                </div>
-                <div class="mt-8 p-6 bg-emerald-950 text-white rounded-2xl flex justify-between items-center shadow-lg">
-                    <span class="font-medium opacity-60 text-xs uppercase tracking-widest text-white">Total Bill</span>
-                    <span id="totalDisplay" class="text-3xl font-bold text-white">৳ 0</span>
-                </div>
-                <button onclick="placeOrder()" id="placeOrderBtn" class="btn-premium w-full py-5 mt-6 rounded-2xl text-lg">Confirm Order</button>
-            </div>
-            <div id="invoiceContent" class="hidden p-10 text-center">
-                <h2 class="text-3xl font-bold text-green-600 mb-6 uppercase">Order Confirmed</h2>
-                <div class="bg-white p-8 rounded-2xl text-left space-y-3 text-sm border border-stone-100 shadow-sm">
-                    <p>ORDER ID: <span id="invID" class="font-bold"></span></p>
-                    <p>CUSTOMER: <span id="invName"></span></p>
-                    <p>PHONE: <span id="invPhone"></span></p>
-                    <p>PAYMENT: <span class="text-emerald-700 font-bold">Cash on Delivery</span></p>
-                    <hr class="my-4">
-                    <p class="text-lg">ITEM: <span id="invProduct" class="font-bold"></span></p>
-                    <p class="text-2xl border-t pt-4 font-bold text-emerald-900">GRAND TOTAL: <span id="invTotal"></span></p>
-                </div>
-                <button onclick="window.print()" class="bg-emerald-950 text-white w-full py-4 mt-8 rounded-xl font-bold uppercase">Print Invoice</button>
-                <button onclick="closeModal()" class="mt-4 text-stone-400 text-sm underline">Close</button>
-            </div>
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="tissue.jpg" alt="Tissue Holder — hogla leaves" class="product-img">
+        <span class="product-tag">Natural Fiber</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Tissue Holder</h3>
+          <span class="product-price">৳399</span>
         </div>
+        <p class="product-material">Hogla Leaves</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">7"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">7"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">3.5"</span></div>
+        </div>
+        <button class="btn-buy" onclick="openCheckout('Tissue Holder',399,'7 inch','7 inch','3.5 inch','Hogla leaves')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
     </div>
 
-    <!-- BRANDING HEADER -->
-    <header class="w-full py-20 flex flex-col items-center">
-        <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-12 mb-8">
-            <img src="logo.png" alt="Bengal Pride" class="h-48 md:h-64 w-auto brightness-0 object-contain">
-            <span class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-none text-center">BENGAL <br class="md:hidden"> PRIDE</span>
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="stand.jpg" alt="Table Organizer — hogla leaves" class="product-img">
+        <span class="product-tag">Handcrafted</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Table Organizer</h3>
+          <span class="product-price">৳599</span>
         </div>
-        <nav class="nav-box flex items-center justify-center space-x-8 md:space-x-14 whitespace-nowrap">
-            <a href="#home" class="nav-link hover:text-[#B66D4B] transition">Home</a>
-            <a href="#collection" class="nav-link hover:text-[#B66D4B] transition">Collection</a>
-            <button onclick="openGoalModal()" class="nav-link hover:text-[#B66D4B] transition uppercase">OUR GOAL</button>
-            <a href="#contact" class="nav-link hover:text-[#B66D4B] transition">Contact</a>
-        </nav>
-    </header>
-
-    <!-- HERO -->
-    <section id="home" class="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-20">
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">From Nature <br><span class="italic font-light text-amber-500/90">To Nature</span></h1>
-        <p class="text-stone-700 text-lg md:text-xl max-w-2xl font-medium opacity-80 mb-12">Authentic, sustainable lifestyle products made from natural fibers by local artisans.</p>
-        
-        <!-- MASSIVE SHOP NOW BUTTON -->
-        <a href="#collection" class="btn-massive">Shop the Collection</a>
-    </section>
-
-    <!-- WHY CHOOSE SECTION -->
-    <section class="py-24 px-6 md:px-20 text-center">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
-            <div class="flex flex-col items-center">
-                <svg class="w-14 h-14 mb-4 text-[#0B241C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path><path d="M12 8l-2 4h4l-2 4"></path></svg>
-                <h4 class="text-xs font-bold uppercase tracking-widest">100% Eco-Friendly</h4>
-            </div>
-            <div class="flex flex-col items-center">
-                <svg class="w-14 h-14 mb-4 text-[#0B241C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <h4 class="text-xs font-bold uppercase tracking-widest">Supporting Artisans</h4>
-            </div>
-            <div class="flex flex-col items-center">
-                <svg class="w-14 h-14 mb-4 text-[#0B241C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 5.04 12.07 12.07 0 00-1.474 8.767 12.054 12.054 0 007.092 9.062 11.952 11.952 0 005.82 0 12.054 12.054 0 007.092-9.062 12.07 12.07 0 00-1.474-8.767z"></path></svg>
-                <h4 class="text-xs font-bold uppercase tracking-widest">Durable Design</h4>
-            </div>
-            <div class="flex flex-col items-center">
-                <svg class="w-14 h-14 mb-4 text-[#0B241C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 2 9 18zm0 0v-8"></path><path d="M5 11l7-9 7 9-7 9-7-9z"></path></svg>
-                <h4 class="text-xs font-bold uppercase tracking-widest">Nature-Inspired</h4>
-            </div>
+        <p class="product-material">Hogla Leaves</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">11"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">8"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">14"</span></div>
         </div>
-    </section>
+        <button class="btn-buy" onclick="openCheckout('Table Organizer',599,'11 inch','8 inch','14 inch','Hogla leaves')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
+    </div>
 
-    <!-- COLLECTION SECTION -->
-    <section id="collection" class="py-24 container mx-auto px-6 text-center">
-        <h3 class="text-5xl font-bold mb-16">Our Collection</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-stretch">
-            <div class="pinterest-card p-8 group">
-                <img src="tray.jpg" class="rounded-2xl aspect-square object-cover mb-6">
-                <h3 class="text-2xl font-bold mb-2">Serving Tray</h3>
-                <p class="text-amber-800 font-bold mb-6 text-xl">৳ 599</p>
-                <div class="flex-grow"></div>
-                <button onclick="openCheckout('Serving Tray', 599, '12 inch', '12 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
-            </div>
-            <div class="pinterest-card p-8 group">
-                <img src="tissue.jpg" class="rounded-2xl aspect-square object-cover mb-6">
-                <h3 class="text-2xl font-bold mb-2">Tissue Holder</h3>
-                <p class="text-amber-800 font-bold mb-6 text-xl">৳ 399</p>
-                <button onclick="openCheckout('Tissue Holder', 399, '7 inch', '7 inch', '3.5 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
-            </div>
-            <div class="pinterest-card p-8 group">
-                <img src="stand.jpg" class="rounded-2xl aspect-square object-cover mb-6">
-                <h3 class="text-2xl font-bold mb-2">Table Organizer</h3>
-                <p class="text-amber-800 font-bold mb-6 text-xl">৳ 599</p>
-                <button onclick="openCheckout('Table Organizer', 599, '11 inch', '8 inch', '14 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
-            </div>
-            <div class="pinterest-card p-8 group">
-                <img src="tray2.jpg" class="rounded-2xl aspect-square object-cover mb-6">
-                <h3 class="text-2xl font-bold mb-2">Spoon Organizer</h3>
-                <p class="text-amber-800 font-bold mb-6 text-xl">৳ 599</p>
-                <button onclick="openCheckout('Spoon Organizer', 599, '14 inch', '11 inch', '4 inch', 'Hogla leaves')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
-            </div>
-            <div class="pinterest-card p-8 group">
-                <img src="shitol_paty.jpg" class="rounded-2xl aspect-square object-cover mb-6">
-                <h3 class="text-2xl font-bold mb-2">Cane Tray with Shitol Paty</h3>
-                <p class="text-amber-800 font-bold mb-6 text-xl">৳ 499</p>
-                <button onclick="openCheckout('Cane Tray with Shitol Paty', 499, '11 inch', '9 inch', '3 inch', 'Cane')" class="btn-premium py-4 rounded-xl w-full text-sm">Buy Now</button>
-            </div>
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="tray2.jpg" alt="Spoon Organizer — hogla leaves" class="product-img">
+        <span class="product-tag">Kitchen</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Spoon Organizer</h3>
+          <span class="product-price">৳599</span>
         </div>
-    </section>
-
-    <!-- FOOTER / CONTACT SECTION -->
-    <footer id="contact" class="py-24 border-t border-black/5 bg-black/5 text-center">
-        <h3 class="text-5xl font-serif italic mb-16 text-[#0B241C]">Bengal Pride</h3>
-        <div class="flex flex-col items-center space-y-10">
-            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 px-6 text-xs font-bold uppercase tracking-widest text-amber-600">
-                <a href="https://www.facebook.com/share/1Co7TaCu7P/?mibextid=wwXIfr" target="_blank" class="flex items-center space-x-3 hover:text-black transition">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg>
-                    <span>Bengal Pride</span>
-                </a>
-                <a href="https://www.instagram.com/bengalpride.global" target="_blank" class="flex items-center space-x-3 hover:text-black transition lowercase">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    <span>bengalpride.global</span>
-                </a>
-                <a href="https://wa.me/8801305552647" target="_blank" class="flex items-center justify-center space-x-3 hover:text-black transition">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.397-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.05-.148-.471-1.138-.645-1.554-.17-.41-.344-.354-.471-.354-.121-.001-.26-.001-.403-.001-.144 0-.378.054-.575.271-.198.216-.755.738-.755 1.8 0 1.062.774 2.087.882 2.235.109.125 1.524 2.327 3.692 3.264.516.222.918.355 1.233.456.518.165.989.141 1.362.085.416-.061 1.275-.339 1.454-.664.179-.325.179-.604.126-.662-.054-.059-.198-.1-.496-.248zM12.004 0C5.374 0 0 5.374 0 12.004c0 2.115.546 4.184 1.583 6.01L0 24l6.128-1.608a11.933 11.933 0 005.876 1.512c6.63 0 12.004-5.374 12.004-12.004C24 5.374 18.625 0 12.004 0z"/></svg>
-                    <span>01305-552647</span>
-                </a>
-                <a href="mailto:bengalpride.global@gmail.com" class="flex items-center justify-center space-x-3 hover:text-black transition lowercase">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 3.714v-7.428l4.623 3.714zm1.442 1.157l4.935 3.963 4.935-3.963 6.065 4.871v-12.871l-11 8.846-11-8.846v12.871l6.065-4.871zm8.312-1.157l4.623-3.714v7.428l-4.623-3.714zm-3.377-2.711l-1-0.803-1 0.803-11-8.846h24l-11 8.846z"/></svg>
-                    <span>bengalpride.global@gmail.com</span>
-                </a>
-                <div class="flex items-center justify-center space-x-3">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-7.5 3.303-7.5 7.5 0 3.743 3.123 8.356 7.5 13.5 4.377-5.144 7.5-9.757 7.5-13.5 0-4.197-3.301-7.5-7.5-7.5zm0 11c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/></svg>
-                    <span class="normal-case">Basundhara R/A, Dhaka</span>
-                </div>
-            </div>
+        <p class="product-material">Hogla Leaves</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">14"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">11"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">4"</span></div>
         </div>
-    </footer>
+        <button class="btn-buy" onclick="openCheckout('Spoon Organizer',599,'14 inch','11 inch','4 inch','Hogla leaves')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
+    </div>
 
-    <script>
-        let currentPrice = 0; let currentItem = "";
-        const SHEETDB_URL = 'https://sheetdb.io/api/v1/p9t48utvkfbtp';
+    <div class="product-card fade-up" style="grid-column: span 1;">
+      <div class="product-img-wrap">
+        <img src="shitol_paty.jpg" alt="Cane Tray with Shitol Paty" class="product-img">
+        <span class="product-tag">Heritage</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Cane Tray + Shitol Paty</h3>
+          <span class="product-price">৳499</span>
+        </div>
+        <p class="product-material">Cane & Shitol Paty</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">11"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">9"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">3"</span></div>
+        </div>
+        <button class="btn-buy" onclick="openCheckout('Cane Tray with Shitol Paty',499,'11 inch','9 inch','3 inch','Cane')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
+    </div>
 
-        function openGoalModal() { document.getElementById('goalModal').style.display = 'flex'; }
-        function closeGoalModal() { document.getElementById('goalModal').style.display = 'none'; }
-        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="Cane_Tray_2.png" alt="Cane Round Serving Tray — handwoven cane with handles" class="product-img">
+        <span class="product-tag">New</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Cane Round Serving Tray</h3>
+          <span class="product-price">৳599</span>
+        </div>
+        <p class="product-material">Handwoven Cane</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">3"</span></div>
+        </div>
+        <button class="btn-buy" onclick="openCheckout('Cane Round Serving Tray',599,'12 inch','12 inch','3 inch','Cane')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
+    </div>
 
-        function openCheckout(item, price, l, w, h, m) {
-            currentItem = item; currentPrice = price;
-            document.getElementById('selectedItemName').innerText = item;
-            document.getElementById('selectedItemPrice').innerText = "৳ " + price;
-            document.getElementById('specL').innerText = l;
-            document.getElementById('specW').innerText = w;
-            document.getElementById('specH').innerText = h;
-            document.getElementById('specM').innerText = m;
-            document.getElementById('modalOverlay').style.display = 'flex';
-            document.getElementById('checkoutForm').style.display = 'block';
-            document.getElementById('invoiceContent').classList.add('hidden');
-            updateTotal();
-        }
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="Food_basket-Net.png" alt="Cane Food Basket with net cover — keeps food safe from insects and dust" class="product-img">
+        <span class="product-tag">New</span>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <h3 class="product-name">Cane Food Basket</h3>
+          <span class="product-price">৳650</span>
+        </div>
+        <p class="product-material">Cane & Net Cover</p>
+        <div class="product-dims">
+          <div class="dim-item"><span class="dim-label">L</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">W</span><span class="dim-val">12"</span></div>
+          <div class="dim-item"><span class="dim-label">H</span><span class="dim-val">9"</span></div>
+        </div>
+        <button class="btn-buy" onclick="openCheckout('Cane Food Basket',650,'12 inch','12 inch','9 inch (with net)','Cane & Net')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Order Now
+        </button>
+      </div>
+    </div>
 
-        function updateTotal() {
-            const delivFee = parseInt(document.getElementById('deliveryZone').value);
-            document.getElementById('totalDisplay').innerText = "৳ " + (currentPrice + delivFee);
-        }
+  </div>
+</section>
 
-        async function placeOrder() {
-            const name = document.getElementById('custName').value;
-            const addr = document.getElementById('custAddr').value;
-            const phone = document.getElementById('custPhone').value;
-            const delivFee = parseInt(document.getElementById('deliveryZone').value);
-            const total = currentPrice + delivFee;
-            const btn = document.getElementById('placeOrderBtn');
+<!-- ── ECO BADGES ── -->
+<div class="badges" style="padding-bottom: 80px; max-width: 900px; margin: 0 auto;">
+  <div class="badge-pill fade-up">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+    100% Natural Fiber
+  </div>
+  <div class="badge-pill fade-up">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+    Handcrafted in Bangladesh
+  </div>
+  <div class="badge-pill fade-up">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 5.04 12.07 12.07 0 00-1.474 8.767"/></svg>
+    Zero Plastic
+  </div>
+  <div class="badge-pill fade-up">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Supporting Artisans
+  </div>
+  <div class="badge-pill fade-up">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Cash on Delivery
+  </div>
+</div>
 
-            if(!name || !addr || !phone) { alert("Kindly provide your details."); return; }
-            btn.innerText = "PROCESSING..."; btn.disabled = true;
+<!-- ── ABOUT / STORY ── -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-label">Our Story</div>
+      <h2 class="about-title">Crafted from the<br><em>Heart of Bengal</em></h2>
+      <p class="about-body">
+        Bengal Pride was born from a love for the ancient craft traditions of Bangladesh — the skilled hands that weave cane, hogla, and shitol paty into objects of everyday beauty. Each product you receive carries the warmth of a local artisan's craft and the spirit of a greener, more conscious world.
+      </p>
+      <p class="about-body" style="margin-bottom: 0;">
+        We believe sustainability isn't a trend — it's a return to how things were always meant to be made: from nature, with care, and designed to last.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Natural materials</div>
+        </div>
+        <div>
+          <div class="stat-num">0</div>
+          <div class="stat-label">Plastic used</div>
+        </div>
+        <div>
+          <div class="stat-num">BD</div>
+          <div class="stat-label">Made in Bangladesh</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-grid">
+      <div class="about-img-card">
+        <img src="tray.jpg" alt="Artisan craftsmanship — serving tray">
+      </div>
+      <div class="about-img-card">
+        <img src="tissue.jpg" alt="Natural hogla fiber products">
+      </div>
+      <div class="about-img-card">
+        <img src="shitol_paty.jpg" alt="Shitol paty heritage weaving">
+      </div>
+    </div>
+  </div>
+</section>
 
-            const orderId = "BP-" + Math.floor(1000 + Math.random() * 9000);
-            const now = new Date();
-            const dateStr = "\u00A0" + now.getDate() + "-" + (now.getMonth() + 1) + "-" + now.getFullYear() + " | " + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+<!-- ── TESTIMONIALS ── -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header fade-up">
+      <div class="section-label">Customer Reviews</div>
+      <h2 class="section-title">What Our <em>Customers Say</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="stars">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"The serving tray is absolutely gorgeous. The weave is so tight and the quality is better than I expected. Love that it's made locally and plastic-free!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">RK</div>
+          <div>
+            <div class="reviewer-name">Rania Khan</div>
+            <div class="reviewer-loc">Gulshan, Dhaka</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Ordered the tissue holder and table organizer together. Both arrived quickly and were packed carefully. The cane smell is so earthy and natural — feels premium!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MH</div>
+          <div>
+            <div class="reviewer-name">Masum Hossain</div>
+            <div class="reviewer-loc">Chittagong</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Bought the Shitol Paty tray as a gift and everyone loved it. Such a unique, meaningful product. You can feel the craftsmanship in every detail."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SF</div>
+          <div>
+            <div class="reviewer-name">Sabrina Farzana</div>
+            <div class="reviewer-loc">Sylhet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            const data = { "Order_ID": orderId, "Date": dateStr, "Customer_Name": name, "Phone": phone, "Address": addr, "Product_Name": currentItem, "Product_Price": currentPrice, "Delivery_Fee": delivFee, "Grand_Total": total, "Status": "Pending" };
+<!-- ── FOOTER / CONTACT ── -->
+<footer id="contact">
+  <div class="contact-inner">
+    <div class="contact-top">
+      <div>
+        <div class="footer-brand">Bengal<br><em>Pride</em></div>
+        <p class="footer-tagline">Sustainable lifestyle products handcrafted in Bangladesh. From nature, with love, for you.</p>
+      </div>
+      <div>
+        <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.35;margin-bottom:20px;">Get in touch</p>
+        <div class="contact-links">
+          <a href="https://www.facebook.com/share/1Co7TaCu7P/?mibextid=wwXIfr" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.326V1.326C24 .597 23.403 0 22.675 0z"/></svg>
+            </div>
+            Bengal Pride on Facebook
+          </a>
+          <a href="https://www.instagram.com/bengalpride.global" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            @bengalpride.global
+          </a>
+          <a href="https://wa.me/8801305552647" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.397-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.05-.148-.471-1.138-.645-1.554-.17-.41-.344-.354-.471-.354-.121-.001-.26-.001-.403-.001-.144 0-.378.054-.575.271-.198.216-.755.738-.755 1.8 0 1.062.774 2.087.882 2.235.109.125 1.524 2.327 3.692 3.264.516.222.918.355 1.233.456.518.165.989.141 1.362.085.416-.061 1.275-.339 1.454-.664.179-.325.179-.604.126-.662-.054-.059-.198-.1-.496-.248zM12.004 0C5.374 0 0 5.374 0 12.004c0 2.115.546 4.184 1.583 6.01L0 24l6.128-1.608a11.933 11.933 0 005.876 1.512c6.63 0 12.004-5.374 12.004-12.004C24 5.374 18.625 0 12.004 0z"/></svg>
+            </div>
+            +880 1305-552647
+          </a>
+          <a href="mailto:bengalpride.global@gmail.com" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            bengalpride.global@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Bengal Pride. All rights reserved.</p>
+      <p class="footer-loc">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-7.5 3.303-7.5 7.5 0 3.743 3.123 8.356 7.5 13.5 4.377-5.144 7.5-9.757 7.5-13.5 0-4.197-3.301-7.5-7.5-7.5zm0 11c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/></svg>
+        Basundhara R/A, Dhaka
+      </p>
+    </div>
+  </div>
+</footer>
 
-            try {
-                const res = await fetch(SHEETDB_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({data: [data]}) });
-                document.getElementById('invID').innerText = orderId;
-                document.getElementById('invName').innerText = name;
-                document.getElementById('invPhone').innerText = phone;
-                document.getElementById('invProduct').innerText = currentItem;
-                document.getElementById('invTotal').innerText = "৳ " + total;
-                document.getElementById('checkoutForm').style.display = 'none';
-                document.getElementById('invoiceContent').classList.remove('hidden');
-            } catch(e) { 
-                document.getElementById('invID').innerText = orderId;
-                document.getElementById('invName').innerText = name;
-                document.getElementById('invPhone').innerText = phone;
-                document.getElementById('invProduct').innerText = currentItem;
-                document.getElementById('invTotal').innerText = "৳ " + total;
-                document.getElementById('checkoutForm').style.display = 'none';
-                document.getElementById('invoiceContent').classList.remove('hidden');
-            }
-        }
-    </script>
+<!-- ── CHECKOUT MODAL ── -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal-sheet" style="position:relative;">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <!-- ORDER FORM -->
+    <div class="modal-body" id="orderFormWrap">
+      <div class="modal-product-header">
+        <h2 class="modal-product-name" id="mProductName">Product</h2>
+        <p class="modal-product-price" id="mProductPrice">৳0</p>
+        <div class="modal-specs">
+          <div><p class="modal-spec-label">Length</p><p class="modal-spec-val" id="mL">—</p></div>
+          <div><p class="modal-spec-label">Width</p><p class="modal-spec-val" id="mW">—</p></div>
+          <div><p class="modal-spec-label">Height</p><p class="modal-spec-val" id="mH">—</p></div>
+          <div><p class="modal-spec-label">Material</p><p class="modal-spec-val" id="mM">—</p></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" id="custName" placeholder="Full Name *" class="form-input" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <input type="tel" id="custPhone" placeholder="Phone Number *" class="form-input" autocomplete="tel" inputmode="numeric">
+      </div>
+      <div class="form-group">
+        <textarea id="custAddr" placeholder="Delivery Address *" class="form-input" style="height:88px;resize:none;" autocomplete="street-address"></textarea>
+      </div>
+      <div class="form-group">
+        <select id="deliveryZone" class="form-select" onchange="updateTotal()">
+          <option value="80">Inside Dhaka — ৳80</option>
+          <option value="120">Outside Dhaka — ৳120</option>
+        </select>
+      </div>
+      <div class="modal-total">
+        <span class="modal-total-label">Total</span>
+        <span class="modal-total-amt" id="mTotal">৳0</span>
+      </div>
+      <button class="btn-confirm" id="confirmBtn" onclick="placeOrder()">Confirm Order</button>
+    </div>
+    <!-- INVOICE -->
+    <div class="invoice-wrap" id="invoiceWrap" style="display:none;">
+      <div class="invoice-check">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h2 class="invoice-title">Order Confirmed!</h2>
+      <p class="invoice-sub">Thank you for your order. We'll contact you shortly.</p>
+      <div class="invoice-card">
+        <div class="invoice-row"><span class="lbl">Order ID</span><span class="val" id="invID"></span></div>
+        <div class="invoice-row"><span class="lbl">Customer</span><span class="val" id="invName"></span></div>
+        <div class="invoice-row"><span class="lbl">Phone</span><span class="val" id="invPhone"></span></div>
+        <div class="invoice-row"><span class="lbl">Item</span><span class="val" id="invProduct"></span></div>
+        <div class="invoice-row"><span class="lbl">Payment</span><span class="val" style="color:var(--forest)">Cash on Delivery</span></div>
+        <div class="invoice-total-row">
+          <span>Grand Total</span>
+          <span id="invTotal"></span>
+        </div>
+      </div>
+      <button class="btn-print" onclick="window.print()">Print Invoice</button>
+      <button class="btn-close-link" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── OUR GOAL MODAL ── -->
+<div id="goalModal">
+  <div class="goal-card">
+    <button class="goal-close" onclick="closeGoalModal()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Our Mission</div>
+    <h2 class="goal-title">Our Goal</h2>
+    <p class="goal-body">
+      "Building a greener future begins with the choices we make today. Through nature-inspired products and conscious living, we aim to turn sustainability into a lifestyle — not just a trend. Thank you for being part of this journey toward a cleaner, safer, and more sustainable world for the generations ahead."
+    </p>
+  </div>
+</div>
+
+<script>
+  let currentPrice = 0, currentItem = '';
+  const SHEETDB_URL = 'https://sheetdb.io/api/v1/p9t48utvkfbtp';
+
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── HAMBURGER ──
+  const burger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobile() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── GOAL MODAL ──
+  function openGoalModal() {
+    document.getElementById('goalModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGoalModal() {
+    document.getElementById('goalModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('goalModal').addEventListener('click', function(e) {
+    if (e.target === this) closeGoalModal();
+  });
+
+  // ── CHECKOUT ──
+  function openCheckout(item, price, l, w, h, m) {
+    currentItem = item; currentPrice = price;
+    document.getElementById('mProductName').textContent = item;
+    document.getElementById('mProductPrice').textContent = '৳' + price;
+    document.getElementById('mL').textContent = l;
+    document.getElementById('mW').textContent = w;
+    document.getElementById('mH').textContent = h;
+    document.getElementById('mM').textContent = m;
+    document.getElementById('orderFormWrap').style.display = 'block';
+    document.getElementById('invoiceWrap').style.display = 'none';
+    document.getElementById('confirmBtn').textContent = 'Confirm Order';
+    document.getElementById('confirmBtn').disabled = false;
+    document.getElementById('custName').value = '';
+    document.getElementById('custPhone').value = '';
+    document.getElementById('custAddr').value = '';
+    updateTotal();
+    document.getElementById('checkoutModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('checkoutModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('checkoutModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  function updateTotal() {
+    const fee = parseInt(document.getElementById('deliveryZone').value);
+    document.getElementById('mTotal').textContent = '৳' + (currentPrice + fee);
+  }
+
+  async function placeOrder() {
+    const name = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const addr = document.getElementById('custAddr').value.trim();
+    if (!name || !phone || !addr) { alert('Please fill in all required fields.'); return; }
+    const btn = document.getElementById('confirmBtn');
+    btn.textContent = 'Processing…'; btn.disabled = true;
+    const fee = parseInt(document.getElementById('deliveryZone').value);
+    const total = currentPrice + fee;
+    const orderId = 'BP-' + Math.floor(1000 + Math.random() * 9000);
+    const now = new Date();
+    const dateStr = now.getDate() + '-' + (now.getMonth()+1) + '-' + now.getFullYear() + ' ' + now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    const data = { Order_ID: orderId, Date: dateStr, Customer_Name: name, Phone: phone, Address: addr, Product_Name: currentItem, Product_Price: currentPrice, Delivery_Fee: fee, Grand_Total: total, Status: 'Pending' };
+    try {
+      await fetch(SHEETDB_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({data:[data]}) });
+    } catch(e) {}
+    document.getElementById('invID').textContent = orderId;
+    document.getElementById('invName').textContent = name;
+    document.getElementById('invPhone').textContent = phone;
+    document.getElementById('invProduct').textContent = currentItem;
+    document.getElementById('invTotal').textContent = '৳' + total;
+    document.getElementById('orderFormWrap').style.display = 'none';
+    document.getElementById('invoiceWrap').style.display = 'block';
+  }
+
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
